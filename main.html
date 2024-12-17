@@ -25,11 +25,14 @@
 			position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
 		}
 
+		/* 9:16 비율을 유지하는 wrapper */
 		.wrap {
-			width: 100%; /* 화면 전체를 덮도록 설정 */
+			width: 1080px; /* 고정된 너비 */
+			height: 1920px; /* 고정된 높이 */
+			margin: 0 auto; /* 화면 중앙에 배치 */
+			position: relative;
 			overflow-y: auto; /* 세로 스크롤이 자동으로 생기도록 설정 */
 			scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
-			height: 100vh; /* 뷰포트 전체 높이를 사용 */
 		}
 
 		/* 각 섹션에 대한 스타일 */
@@ -46,6 +49,8 @@
 
 		.main {
 			background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b");
+			background-size: cover; /* 배경 이미지를 화면에 맞게 채우도록 설정 */
+			background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
 		}
 
 		.page1 {
@@ -60,6 +65,20 @@
 			background-color: white;
 		}
 
+		/* 모바일 기기에서 비율을 유지하기 위한 반응형 처리 */
+		@media (max-width: 1080px) {
+			.wrap {
+				width: 100%; /* 화면이 좁아지면 가로 크기를 화면 크기에 맞춤 */
+				height: auto; /* 세로 크기는 비율에 맞추어 자동으로 설정 */
+			}
+		}
+
+		@media (max-height: 1920px) {
+			.wrap {
+				height: 100%; /* 화면이 좁아지면 세로 크기를 화면 크기에 맞춤 */
+				width: auto; /* 가로 크기는 비율에 맞추어 자동으로 설정 */
+			}
+		}
 	</style>
   
 </head>
