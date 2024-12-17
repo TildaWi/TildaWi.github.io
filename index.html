@@ -98,25 +98,44 @@
 		});
 	</script>
 	<style>
-		.snow_wrap { overflow: hidden; width: 100%; height: 100vh; } 
-		.snow { background: #141f3e; } 
-		.bear_wrap { position: relative; }
+		body {
+			  background: #cfd8dc;
+			  display: flex;
+			  justify-content: center;
+			  align-items: center;
+			}
+		.snow_wrap { 
+			overflow: hidden;
+			width: 100%; 
+			height: 100vh; 
+			z-index: 1;
+		} 
+		.snow { 
+			background: #141f3e;
+		} 
+		.bear_wrap { 
+			position: relative;
+			z-index: 2;
+		}
 		.baer { 
 			position: absolute; 
 			top: 50%;
 			left: 50%;
 			transform: translateY(-50%);
-  			transform : translateX(-50%);
+  			transform: translateX(-50%);
  		}
 
 	</style>	
 </head>
 <body>
+	// 초대장 페이지 백그라운드
 	<div class="snow_wrap">
     		<canvas class="snow"></canvas>
-		<div class="bear_wrap">
-			<img class="bear" src="https://github.com/user-attachments/assets/d0a42c0e-74b4-4b56-bfff-6243c8d0e57a" alt="산타곰">
-		</div>
+	</div>
+	
+	// 초대장 페이지 산타곰
+	<div class="bear_wrap">
+		<img class="bear" src="https://github.com/user-attachments/assets/d0a42c0e-74b4-4b56-bfff-6243c8d0e57a" alt="산타곰">
 	</div>
 </body>
 </html>
