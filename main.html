@@ -18,9 +18,10 @@
 		    margin: 0; /* 기본 여백 제거 */
 		    padding: 0; /* 기본 패딩 제거 */
 		    overflow-x: hidden; /* 가로 스크롤 방지 */
-		    overflow-y: auto; /* 세로 스크롤을 자동으로 처리 */
+		    overflow-y: scroll; /* 세로 스크롤을 자동으로 처리 */
 		}
 		
+		/* .wrap 박스에 대한 세로 스크롤바 숨기기 */
 		.wrap {
 		    width: 1080px; /* 고정된 너비 */
 		    height: 1920px; /* 고정된 높이 */
@@ -30,7 +31,13 @@
 		    scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
 		}
 		
-		/* 기타 스타일 */
+		/* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+		.wrap::-webkit-scrollbar {
+		    width: 0; /* 스크롤바 너비를 0으로 설정 */
+		    height: 0; /* 가로 스크롤바도 숨기려면 이 속성 추가 */
+		}
+		
+		/* 나머지 스타일 */
 		.main, .page1, .page2, .page3 {
 		    width: 100%; /* 전체 너비 */
 		    height: 100vh; /* 화면 높이에 맞게 */
