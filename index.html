@@ -90,7 +90,7 @@
         }
 
         body {
-            width: 1080xp;
+            width: 100%;
             font-family: Arial, sans-serif;
             position: relative;
         }
@@ -115,16 +115,18 @@
         
         .bear_wrap { 
             position: absolute;
-            top: 50%;
+            top: 70%; /* 화면 하단에서 30% 떨어지도록 설정 */
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%); /* 수평 중앙 정렬 */
             z-index: 2;  /* 산타곰이 배경 이미지 위에 보이도록 설정 */
         }
         
         .baer { 
-            max-width: 100%
+            max-width: 1080px;  /* 이미지 가로 너비 최대 1080px */
+            width: 100%;  /* 반응형 이미지 */
             height: auto;
         }
+
     </style>    
 </head>
 <body>
@@ -140,7 +142,7 @@
     
     <!-- 산타곰 -->
     <div class="bear_wrap">
-        <img class="baer_on" src="https://github.com/user-attachments/assets/57865773-ddaf-433a-a17c-1c309553b00b" alt="산타곰">
+        <img class="baer" src="https://github.com/user-attachments/assets/57865773-ddaf-433a-a17c-1c309553b00b" alt="산타곰">
     </div>
 </body>
 </html>
