@@ -101,9 +101,10 @@
             width: 100%;
             height: 100%;
             background-image: url("https://raw.githubusercontent.com/user-attachments/assets/c07aaa0b-cb87-4674-9091-cc6598729167");
-            background-size: cover;
+            background-size: cover;  /* 배경 크기를 화면에 맞게 설정 */
+            background-position: center;  /* 배경을 중앙에 배치 */
             overflow: hidden;
-            z-index: -1;
+            z-index: 0;  /* 배경 이미지를 맨 뒤로 설정 */
         }
         
         .snow { 
@@ -116,7 +117,7 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            z-index: 2;
+            z-index: 2;  /* 산타곰이 배경 이미지 위에 보이도록 설정 */
         }
         
         .baer { 
