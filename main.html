@@ -22,8 +22,8 @@
 		
 		/* .wrap 박스에 대한 세로 스크롤바 숨기기 */
 		.wrap {
-		    width: 1080px; /* 고정된 너비 */
-		    height: 1920px; /* 고정된 높이 */
+		    width: 100%; /* 화면 너비에 맞추기 */
+		    height: 100vh; /* 화면 높이에 맞추기 */
 		    margin: 0 auto; /* 화면 중앙에 배치 */
 		    position: relative;
 		    overflow-y: scroll; /* 세로 스크롤 추가 */
@@ -51,7 +51,7 @@
 		/* .main 페이지에 배경 이미지 적용 */
 		.main {
 		    background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b"); /* 배경 이미지 추가 */
-		    background-size: contain; /* 이미지를 가로와 세로 비율에 맞게 조정 */
+		    background-size: cover; /* 배경 이미지가 화면에 맞게 커지도록 설정 */
 		    background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
 		    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
 		}
