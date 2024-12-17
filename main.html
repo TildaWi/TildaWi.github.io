@@ -46,6 +46,7 @@
 		    font-size: 2rem;
 		    text-align: center;
 		    scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
+		    box-sizing: border-box; /* 패딩과 테두리가 너비와 높이에 포함되도록 설정 */
 		}
 		
 		/* .main 페이지에 배경 이미지 적용 */
@@ -53,6 +54,7 @@
 		    background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b"); /* 배경 이미지 추가 */
 		    background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
 		    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+		    background-size: cover; /* 이미지 비율을 유지하며 화면을 꽉 채우도록 설정 */
 		}
 
 		/* PC에서 배경 이미지가 화면을 꽉 채우도록 설정 */
@@ -69,6 +71,12 @@
 		    }
 		}
 		
+		/* 페이지 요소들이 1080px을 넘지 않도록 제한 */
+		.page1, .page2, .page3 {
+		    max-width: 1080px; /* 최대 너비 1080px */
+		    margin: 0 auto; /* 중앙 정렬 */
+		}
+
 		/* 추가 스타일 */
 		.page1 {
 		    background-color: brown;
