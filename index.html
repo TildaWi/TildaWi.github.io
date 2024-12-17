@@ -7,6 +7,7 @@
 	<title>🌟송년회 초대장🌟</title>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+		alert("주의! 이어폰을 착용하거나 음소거를 해주세요!")
 		$(document).ready(function(){
 			const canvas = $('.snow')[0];
 			const context = canvas.getContext('2d');
@@ -86,14 +87,16 @@
 			const bearOff = $(".bear_off");
 			const bearOn = $(".bear_on");
 
-			bearOff.animate({
-				transform: "scale(1)"
+			// bear_off 이미지를 점차적으로 크기 키우기
+			bearOff.css({ transform: "scale(0)" }); // 초기 크기 0으로 설정
+			bearOff.animate({ 
+				// 2초 동안 크기를 100%로 변경
+				transform: "scale(1)" 
 			}, 2000, function() {
 				// 크기 변화가 완료되면 bear_off 이미지는 숨기고, bear_on 이미지를 나타냄
 				bearOff.hide();
 				bearOn.show();
 			});
-
 		});
 	</script>
 	<style>
@@ -133,7 +136,7 @@
 			position: absolute;
 			top: 50%;
 			left: 50%;
-			transform: translate(-50%, -50%) scale(0);
+			transform: translate(-50%, -50%) scale(0); /* 초기 상태에서 0 크기 설정 */
 			transition: transform 2s ease;
 			z-index: 2;
 		}
