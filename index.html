@@ -7,6 +7,7 @@
 	<title>🌟송년회 초대장🌟</title>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
+		alert("주의! 이어폰을 착용하거나 음소거를 설정해주세요!")
 		$(document).ready(function(){
 			
 			const canvas = $('.snow')[0];
@@ -142,12 +143,17 @@
 	</style>	
 </head>
 <body>
+	<!-- 사운드 -->
+	<audio controls autoplay loop>
+	    <source src="https://raw.githubusercontent.com/TildaWi/TildaWi.github.io/main/snow-and-christmas-261290.mp3" type="audio/mp3">
+	</audio>
+	
 	<!-- 초대장 페이지 백그라운드 -->
 	<div class="snow_wrap">
     		<canvas class="snow"></canvas>
 	</div>
 	
-	<!-- 초대장 페이지 산타곰 -->
+	<!-- 산타곰 -->
 	<div class="bear_wrap">
 		<img class="baer_on" src="https://github.com/user-attachments/assets/021de9ac-3d3d-4ee3-a52c-b9a383cb12f6" alt="산타곰">
 	</div>
