@@ -88,14 +88,14 @@
 			const bearOn = $(".bear_on");
 
 			// bear_off 이미지를 점차적으로 크기 키우기
-			bearOff.css({ transform: "scale(0)" }); // 초기 크기 0으로 설정
+			bearOff.css({ transform: "scale(0)" }); // 초기 상태에서 scale(0)으로 설정
 			bearOff.animate({ 
-				// 2초 동안 크기를 100%로 변경
-				transform: "scale(1)" 
+				// 2초 동안 크기를 100%로 변경 (scale은 animate에서 직접 적용 불가, 대신 CSS로 처리)
+				"transform": "scale(1)"
 			}, 2000, function() {
 				// 크기 변화가 완료되면 bear_off 이미지는 숨기고, bear_on 이미지를 나타냄
 				bearOff.hide();
-				bearOn.show();
+				bearOn.fadeIn(1000); // bear_on 이미지를 천천히 나타나게 하기
 			});
 		});
 	</script>
