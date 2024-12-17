@@ -8,7 +8,6 @@
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		$(document).ready(function(){
-			
 			const canvas = $('.snow')[0];
 			const context = canvas.getContext('2d');
 			
@@ -19,9 +18,7 @@
 			
 			// 눈송이 파티클을 생성하는 함수입니다.
 			function createParticles() {
-			    // 기존 파티클을 삭제하고 새 파티클을 생성합니다.
 			    snowParticles = []; 
-			    // 디바이스에 따라 파티클 수를 조정합니다.
 			    const particleCount = lastDeviceType === 'mobile' ? 40 : 100; 
 			    for (let i = 0; i < particleCount; i++) {
 			        snowParticles.push(new createParticle());
@@ -31,33 +28,27 @@
 			// 캔버스의 크기를 조정하는 함수입니다.
 			function setCanvasSize() {
 			    const currentDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
-			    // 디바이스가 변경되면 새로운 파티클을 생성합니다.
 			    if (currentDeviceType !== lastDeviceType) {
 			        lastDeviceType = currentDeviceType;
 			        createParticles();
 			    }
 			    
-			    // 임시 캔버스를 사용하여 현재 내용을 저장합니다.
 			    const tempCanvas = document.createElement('canvas');
 			    const tempCtx = tempCanvas.getContext('2d');
 			    tempCanvas.width = canvasWidth;
 			    tempCanvas.height = canvasHeight;
 			    tempCtx.drawImage(canvas, 0, 0);
 			
-			    // 캔버스의 크기를 재설정합니다.
 			    canvasWidth = $('.snow_wrap').width();
 			    canvasHeight = $('.snow_wrap').height();
 			    canvas.width = canvasWidth;
 			    canvas.height = canvasHeight;
 			
-			    // 임시 캔버스의 내용을 원래 캔버스에 복원합니다.
 			    context.drawImage(tempCanvas, 0, 0);
 			}
 			
-			// 눈송이 파티클을 저장할 배열입니다.
 			let snowParticles = []; 
 			
-			// 개별 눈송이 파티클을 생성하는 생성자 함수입니다.
 			function createParticle() {
 			    this.x = Math.random() * canvasWidth;
 			    this.y = Math.random() * canvasHeight;
@@ -67,9 +58,8 @@
 			    this.radius = Math.random() * 5 + 2;
 			}
 			
-			// 눈송이 파티클을 그리는 함수입니다.
 			function draw() {
-			    context.clearRect(0, 0, canvasWidth, canvasHeight); // 캔버스를 지웁니다.
+			    context.clearRect(0, 0, canvasWidth, canvasHeight); 
 			    snowParticles.forEach(function(particle) {
 			        context.beginPath();
 			        let gradient = context.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius);
@@ -78,10 +68,8 @@
 			        context.fillStyle = gradient;
 			        context.arc(particle.x, particle.y, particle.radius, Math.PI * 2, false);
 			        context.fill();
-			        // 파티클 위치 업데이트
 			        particle.x += particle.vx;
 			        particle.y += particle.vy;
-			        // 파티클이 캔버스 밖으로 나가면 반대편에서 다시 시작
 			        if (particle.x < -50) particle.x = canvasWidth + 50;
 			        if (particle.y < -50) particle.y = canvasHeight + 50;
 			        if (particle.x > canvasWidth + 50) particle.x = -50;
@@ -89,36 +77,45 @@
 			    });
 			}
 			
-			// 창 크기가 변경될 때마다 캔버스 크기를 조정합니다.
 			$(window).resize(setCanvasSize);
-			setCanvasSize(); // 초기 캔버스 크기를 설정합니다.
-			createParticles(); // 초기 파티클을 생성합니다.
-			setInterval(draw, 33); // 33ms 간격으로 눈송이 애니메이션을 시작합니다.
+			setCanvasSize(); 
+			createParticles(); 
+			setInterval(draw, 33); 
+			
+			// 애니메이션 진행 및 보이기/숨기기 효과
+			const bearOff = $(".bear_off");
+			const bearOn = $(".bear_on");
+
+			bearOff.animate({
+				transform: "scale(1)"
+			}, 2000, function() {
+				// 크기 변화가 완료되면 bear_off 이미지는 숨기고, bear_on 이미지를 나타냄
+				bearOff.hide();
+				bearOn.show();
+			});
 
 		});
 	</script>
 	<style>
 		html, body {
-			height: 100%; /* 전체 화면을 차지하도록 설정 */
-			margin: 0; /* 기본 여백 제거 */
-			padding: 0; /* 기본 패딩 제거 */
-			overflow-x: hidden; /* 가로 스크롤 방지 */
+			height: 100%; 
+			margin: 0; 
+			padding: 0;
+			overflow-x: hidden; 
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background-color: #f0f0f0;
 		}
 
-		body {
-		  	background-color: #f0f0f0; /* 배경색 설정 */
-		  	font-family: Arial, sans-serif; /* 기본 폰트 설정 */
-		  	position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
-		}
-		
 		.snow_wrap { 
-			position: absolute; /* 또는 fixed, relative 등 필요에 맞게 설정 */
-  			top: 0; /* 원하는 위치에 맞게 조정 */
-			left: 0; /* 원하는 위치에 맞게 조정 */
-			width: 100%; /* 화면 전체를 덮도록 설정 */
-			height: 100%; /* 화면 전체를 덮도록 설정 */
-			overflow: hidden;  /* 눈이 화면을 벗어나지 않도록 숨김 */
-			z-index: -1; /* snow_wrap이 맨 뒤로 가도록 z-index를 낮추기 */
+			position: absolute;
+			top: 0; 
+			left: 0; 
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+			z-index: -1; 
 		}
 		
 		.snow { 
@@ -133,29 +130,30 @@
 		}
 		
 		.bear_off { 
-			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-			top: 50%; /* 화면의 세로 중앙 */
-			left: 50%; /* 화면의 가로 중앙 */
-			transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
-		  	z-index: 2; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
- 		}
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%) scale(0);
+			transition: transform 2s ease;
+			z-index: 2;
+		}
+		
 		.bear_on { 
-			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-			top: 50%; /* 화면의 세로 중앙 */
-			left: 50%; /* 화면의 가로 중앙 */
-			transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
-		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
- 		}
+			position: absolute;
+			top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+			display: none;
+			z-index: 1;
+		}
 
 	</style>	
 </head>
 <body>
-	<!-- 초대장 페이지 백그라운드 -->
 	<div class="snow_wrap">
-    		<canvas class="snow"></canvas>
+		<canvas class="snow"></canvas>
 	</div>
 	
-	<!-- 초대장 페이지 산타곰 -->
 	<div class="bear_wrap">
 		<img class="bear_off" src="https://github.com/user-attachments/assets/711a66f8-37a2-4239-b28a-0f5a145fb487" alt="산타곰_꺼짐">
 		<img class="bear_on" src="https://github.com/user-attachments/assets/021de9ac-3d3d-4ee3-a52c-b9a383cb12f6" alt="산타곰_켜짐">
