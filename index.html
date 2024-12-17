@@ -129,15 +129,16 @@
 		} 
 		
 		.bear_wrap { 
-			position: relative;
-			z-index: 2;
+			position: absolute; /* 절대 위치 설정 */
+			top: 50%; /* 화면의 세로 중앙 */
+			left: 50%; /* 화면의 가로 중앙 */
+			transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
+			z-index: 2; /* 위에 표시되도록 설정 */
 		}
 		
 		.baer { 
-			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-		  	top: 0; /* 원하는 위치에 맞게 조정 */
-		  	left: 0; /* 원하는 위치에 맞게 조정 */
-		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
+			max-width: 100%; /* 화면 크기에 맞게 이미지 크기 조절 */
+			height: auto; /* 비율에 맞게 높이 자동 조정 */
  		}
 
 	</style>	
