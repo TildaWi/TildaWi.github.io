@@ -8,44 +8,7 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
         $(document).ready(function(){
-            var typingBool = false; 
-            var typingIdx = 0; 
-            var liIndex = 0;
-            var liLength = $(".typing-txt>ul>li").length;
 
-            function typing() {
-                var typingTxt = $(".typing-txt>ul>li").eq(liIndex).text(); // 타이핑될 텍스트를 가져온다 
-                typingTxt = typingTxt.split(""); // 한 글자씩 자른다. 
-                
-                if(typingBool === false) { 
-                    typingBool = true; 
-                    var tyInt = setInterval(function() {
-                        if(typingIdx < typingTxt.length) { 
-                            $(".typing").append(typingTxt[typingIdx]); // 한 글자씩 이어준다. 
-                            typingIdx++; 
-                        } else { 
-                            // 타이핑이 끝난 후, 다음 문장으로 넘어간다
-                            if (liIndex >= liLength - 1) {
-                                liIndex = 0; // 마지막 문장이라면 처음 문장으로
-                            } else {
-                                liIndex++; // 다음 문장으로
-                            }
-
-                            typingIdx = 0; 
-                            typingBool = false; 
-                            clearInterval(tyInt); // 타이핑 인터벌을 종료하고
-
-                            setTimeout(function() {
-                                $(".typing").html(''); // 현재 문장 지우고
-                                tyInt = setInterval(typing, 100); // 다음 문장 타이핑 시작
-                            }, 1000); // 1초 대기
-                        }
-                    }, 100); // 타이핑 속도
-                }
-            }
-
-            // 첫 문장부터 타이핑 시작
-            typing();
         });
     </script>
 
@@ -82,41 +45,27 @@
 
         /* .main 페이지에 배경 이미지 적용 */
         .main {
-            background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b");
+            background-image: url("https://github.com/user-attachments/assets/b8ce9f01-b241-4932-80dd-ab7df79253fa");
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
         }
 
-        .typing-txt {
-            width: 600px;
-            height: 300px;
+        .page1 {
+            background-image: url("https://github.com/user-attachments/assets/6b344f28-2c37-4cf2-8705-ddcf79c2b5a6");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
         }
 
-        /* 타이핑 커서 애니메이션 */
-        .typing {
-            display: inline-block;
-            animation-name: cursor;
-            animation-duration: 0.3s;
-            animation-iteration-count: infinite;
-        }
+
+       
 
         @keyframes cursor {
             0% { border-right: 1px solid #fff; }
             50% { border-right: 1px solid #000; }
             100% { border-right: 1px solid #fff; }
         }
-
-        /* 문장 리스트 스타일 */
-        .typing-txt ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        /* 각 페이지의 배경색 */
-        .page1 { background-color: brown; }
-        .page2 { background-color: orange; }
-        .page3 { background-color: white; }
 
     </style>
 </head>
@@ -125,30 +74,22 @@
 
         <!-- 연말 크리스마스 -->
         <div class="main">
-            <div class="typing-txt">
-                <ul>
-                    <li class="title">제 1회 오합지졸 송년회!🎉</li>
-                    <li>이 송년회는 그냥 송년회가 아닙니다!<br>30대에도 여전히 철없이 노는 우리들에게 안성맞춤!</li>
-                    <li>이제 다 함께 모여서 한 해를 마무리하고💃<br>내년에는 더 신나게 놀자구요!✨</li>
-                    <li>오합지졸🎊이지만, 마음만은 하나!<br>자, 이제 준비되셨나요?</li>
-                    <li class="last_title">아래로 스크롤 해주세요!</li>
-                </ul>
-            </div>
+
         </div>
 
         <!-- 1부 시상식 컨셉 -->
         <div class="page1">
-            <h1>jazz</h1>
+ 
         </div>
 
         <!-- 2부 미운 우리 이모들 컨셉 -->
         <div class="page2">
-            <h1>찌라시</h1>
+        
         </div>
 
         <!-- etc -->
         <div class="page3">
-            <h1>위치 오는길 안내</h1>
+         
         </div>
 
     </div>
