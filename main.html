@@ -1,125 +1,184 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>2024 오합지졸 송년회</title>
-	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
-	<script>
-		$(document).ready(function(){
-			// 여기에 필요한 자바스크립트 코드 추가
-		});
-	</script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 오합지졸 송년회</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            let $typingTxt = $('.typing-txt ul li');
+            let typingDelay = 100; // 타이핑 속도
+            let eraseDelay = 50;  // 지우는 속도
+            let nextDelay = 500;  // 다음 li로 넘어가기 전에 대기 시간
+            let currentIndex = 0;
+
+            function typeText(index) {
+                let text = $typingTxt.eq(index).text();
+                let charIndex = 0;
+
+                $typingTxt.eq(index).text(''); // 텍스트 초기화
+
+                let typingInterval = setInterval(function(){
+                    $typingTxt.eq(index).append(text.charAt(charIndex));
+                    charIndex++;
+
+                    if(charIndex === text.length) {
+                        clearInterval(typingInterval);
+                        if(index === $typingTxt.length - 1) {
+                            return; // 마지막 li는 지우지 않음
+                        } else {
+                            eraseText(index); // 타이핑 후 지우기
+                        }
+                    }
+                }, typingDelay);
+            }
+
+            function eraseText(index) {
+                let text = $typingTxt.eq(index).text();
+                let eraseIndex = text.length - 1;
+
+                let eraseInterval = setInterval(function(){
+                    $typingTxt.eq(index).text(text.substring(0, eraseIndex));
+                    eraseIndex--;
+
+                    if(eraseIndex === -1) {
+                        clearInterval(eraseInterval);
+                        currentIndex++; // 다음 li로 넘어가기
+                        if(currentIndex < $typingTxt.length) {
+                            setTimeout(function() {
+                                typeText(currentIndex);
+                            }, nextDelay); // 다음 li 타이핑 시작
+                        }
+                    }
+                }, eraseDelay);
+            }
+
+            typeText(currentIndex); // 첫 번째 li부터 타이핑 시작
+        });
+    </script>
   
-	<style>
-		html, body {
-		    height: 100%; /* 전체 화면을 차지하도록 설정 */
-		    margin: 0; /* 기본 여백 제거 */
-		    padding: 0; /* 기본 패딩 제거 */
-		    overflow-x: hidden; /* 가로 스크롤 방지 */
-		}
-		
-		/* .wrap 박스에 대한 세로 스크롤바 숨기기 */
-		.wrap {
-		    width: 100%; /* 화면 너비에 맞추기 */
-		    height: 100vh; /* 화면 높이에 맞추기 */
-		    margin: 0 auto; /* 화면 중앙에 배치 */
-		    position: relative;
-		    overflow-y: scroll; /* 세로 스크롤 추가 */
-		    scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
-		}
-		
-		/* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
-		.wrap::-webkit-scrollbar {
-		    width: 0; /* 스크롤바 너비를 0으로 설정 */
-		    height: 0; /* 가로 스크롤바도 숨기려면 이 속성 추가 */
-		}
-		
-		/* 각 섹션에 대한 스타일 */
-		.main, .page1, .page2, .page3 {
-		    width: 100%; /* 전체 너비 */
-		    height: 100vh; /* 화면 높이에 맞게 */
-		    display: flex;
-		    justify-content: center;
-		    align-items: center;
-		    font-size: 2rem;
-		    text-align: center;
-		    scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
-		    box-sizing: border-box; /* 패딩과 테두리가 너비와 높이에 포함되도록 설정 */
-		}
-		
-		/* .main 페이지에 배경 이미지 적용 */
-		.main {
-		    background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b"); /* 배경 이미지 추가 */
-		    background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
-		    background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
-		    background-size: cover; /* 이미지 비율을 유지하며 화면을 꽉 채우도록 설정 */
-		}
+    <style>
+        html, body {
+            height: 100%; /* 전체 화면을 차지하도록 설정 */
+            margin: 0; /* 기본 여백 제거 */
+            padding: 0; /* 기본 패딩 제거 */
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+        }
+        
+        /* .wrap 박스에 대한 세로 스크롤바 숨기기 */
+        .wrap {
+            width: 100%; /* 화면 너비에 맞추기 */
+            height: 100vh; /* 화면 높이에 맞추기 */
+            margin: 0 auto; /* 화면 중앙에 배치 */
+            position: relative;
+            overflow-y: scroll; /* 세로 스크롤 추가 */
+            scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
+        }
+        
+        /* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
+        .wrap::-webkit-scrollbar {
+            width: 0; /* 스크롤바 너비를 0으로 설정 */
+            height: 0; /* 가로 스크롤바도 숨기려면 이 속성 추가 */
+        }
+        
+        /* 각 섹션에 대한 스타일 */
+        .main, .page1, .page2, .page3 {
+            width: 100%; /* 전체 너비 */
+            height: 100vh; /* 화면 높이에 맞게 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            text-align: center;
+            scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
+            box-sizing: border-box; /* 패딩과 테두리가 너비와 높이에 포함되도록 설정 */
+        }
+        
+        /* .main 페이지에 배경 이미지 적용 */
+        .main {
+            background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b"); /* 배경 이미지 추가 */
+            background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
+            background-repeat: no-repeat; /* 배경 이미지 반복 방지 */
+            background-size: cover; /* 이미지 비율을 유지하며 화면을 꽉 채우도록 설정 */
+        }
+        .typing-txt {
+            width: 600px;
+            height: 300px;
+        }
 
-		/* PC에서 배경 이미지가 화면을 꽉 채우도록 설정 */
-		@media (min-width: 1081px) {
-		    .main {
-		        background-size: contain; /* 이미지 비율을 유지하면서 화면에 맞게 크기 조정 */
-		    }
-		}
+        /* PC에서 배경 이미지가 화면을 꽉 채우도록 설정 */
+        @media (min-width: 1081px) {
+            .main {
+                background-size: contain; /* 이미지 비율을 유지하면서 화면에 맞게 크기 조정 */
+            }
+        }
 
-		/* 모바일에서 배경 이미지가 화면을 꽉 채우도록 설정 */
-		@media (max-width: 1080px) {
-		    .main {
-		        background-size: cover; /* 화면을 꽉 채우도록 설정 */
-		    }
-		}
-		
-		/* 페이지 요소들이 1080px을 넘지 않도록 제한 */
-		.page1, .page2, .page3 {
-		    max-width: 1080px; /* 최대 너비 1080px */
-		    margin: 0 auto; /* 중앙 정렬 */
-		}
+        /* 모바일에서 배경 이미지가 화면을 꽉 채우도록 설정 */
+        @media (max-width: 1080px) {
+            .main {
+                background-size: cover; /* 화면을 꽉 채우도록 설정 */
+            }
+        }
+        
+        /* 페이지 요소들이 1080px을 넘지 않도록 제한 */
+        .page1, .page2, .page3 {
+            max-width: 1080px; /* 최대 너비 1080px */
+            margin: 0 auto; /* 중앙 정렬 */
+        }
 
-		/* 추가 스타일 */
-		.page1 {
-		    background-color: brown;
-		}
-		
-		.page2 {
-		    background-color: orange;
-		}
-		
-		.page3 {
-		    background-color: white;
-		}
+        /* 추가 스타일 */
+        .page1 {
+            background-color: brown;
+        }
+        
+        .page2 {
+            background-color: orange;
+        }
+        
+        .page3 {
+            background-color: white;
+        }
 
-	</style>
+    </style>
   
 </head>
 <body>
-	<!-- 사운드 -->
-	
-	<!-- 전체 스크롤을 위한 랩 -->
-	<div class="wrap">
+    <!-- 사운드 -->
+    
+    <!-- 전체 스크롤을 위한 랩 -->
+    <div class="wrap">
 
-		<!-- 연말 크리스마스 -->
-		<div class="main">
-			<h1>일자 시간대 안내</h1>
-		</div>
+        <!-- 연말 크리스마스 -->
+        <div class="main">
+            <div class="typing-txt">    
+                <ul>
+                    <li class="title">제 1회 오합지졸 송년회!🎉</li>
+                    <li>이 송년회는 그냥 송년회가 아닙니다!<br>30대에도 여전히 철없이 노는 우리들에게 안성맞춤!</li>
+                    <li>이제 다 함께 모여서 한 해를 마무리하고💃<br>내년에는 더 신나게 놀자구요!✨</li>
+                    <li>오합지졸🎊이지만, 마음만은 하나!<br>자, 이제 준비되셨나요?</li>
+                    <li class="last_title">아래로 스크롤 해주세요!</li>
+                </ul>
+            </div>
+        </div>
 
-		<!-- 1부 시상식 컨셉 -->
-		<div class="page1">
-			<h1>jazz</h1>
-		</div>
+        <!-- 1부 시상식 컨셉 -->
+        <div class="page1">
+            <h1>jazz</h1>
+        </div>
 
-		<!-- 2부 미운 우리 이모들 컨셉 -->
-		<div class="page2">
-			<h1>찌라시</h1>
-		</div>
+        <!-- 2부 미운 우리 이모들 컨셉 -->
+        <div class="page2">
+            <h1>찌라시</h1>
+        </div>
 
-		<!-- etc -->
-		<div class="page3">
-			<h1>위치 오는길 안내</h1>
-		</div>
+        <!-- etc -->
+        <div class="page3">
+            <h1>위치 오는길 안내</h1>
+        </div>
 
-	</div>
+    </div>
 
 </body>
 </html>
