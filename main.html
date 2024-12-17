@@ -4,15 +4,12 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title> 2024 오합지졸 송년회 </title></title>
+	<title>2024 오합지졸 송년회</title>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
-		
 		$(document).ready(function(){
-			
-
+			// 여기에 필요한 자바스크립트 코드 추가
 		});
-    
 	</script>
   
 	<style>
@@ -24,74 +21,75 @@
 		}
 
 		body {
-		  	font-family: Arial, sans-serif; /* 기본 폰트 설정 */
-		  	position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
+			font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+			position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
 		}
-		
+
 		.wrap {
-			position: absolute; /* 또는 fixed, relative 등 필요에 맞게 설정 */
-  			top: 0; /* 원하는 위치에 맞게 조정 */
-			left: 0; /* 원하는 위치에 맞게 조정 */
 			width: 100%; /* 화면 전체를 덮도록 설정 */
-			height: 100%; /* 화면 전체를 덮도록 설정 */
-			overflow-y: scroll;
+			overflow-y: auto; /* 세로 스크롤이 자동으로 생기도록 설정 */
+			scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
+			height: 100vh; /* 뷰포트 전체 높이를 사용 */
+		}
+
+		/* 각 섹션에 대한 스타일 */
+		.main, .page1, .page2, .page3 {
+			width: 100%; /* 전체 너비 */
+			height: 100vh; /* 화면 높이에 맞게 */
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			font-size: 2rem;
+			text-align: center;
+			scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
 		}
 
 		.main {
-			width: 100%;
-			height: 100%;
 			background-color: red;
 		}
 
 		.page1 {
-			width: 100%;
-			height: 100%;
 			background-color: brown;
 		}
 
 		.page2 {
-			width: 100%;
-			height: 100%;
 			background-color: orange;
 		}
 
 		.page3 {
-			width: 100%;
-			height: 100%;
 			background-color: white;
 		}
-		
+
 	</style>
   
 </head>
-  
 <body>
 	<!-- 사운드 -->
 	
-	<!--  -->
+	<!-- 전체 스크롤을 위한 랩 -->
 	<div class="wrap">
 
-	    	<!-- 연말 크리스마스 -->
-	    	<div class="main">
-	    		<h1>일자 시간대 안내</h1>
-	    	</div>
+		<!-- 연말 크리스마스 -->
+		<div class="main">
+			<h1>일자 시간대 안내</h1>
+		</div>
 
 		<!-- 1부 시상식 컨셉 -->
-	    	<div class="page1">
-	    		<h1>jazz</h1>
-	    	</div>
+		<div class="page1">
+			<h1>jazz</h1>
+		</div>
 
 		<!-- 2부 미운 우리 이모들 컨셉 -->
-	    	<div class="page2">
-	    		<h1>찌라시</h1>
-	    	</div>
+		<div class="page2">
+			<h1>찌라시</h1>
+		</div>
 
 		<!-- etc -->
-	    	<div class="page3">
-	    		<h1>위치 오는길 안내</h1>
-	    	</div>
+		<div class="page3">
+			<h1>위치 오는길 안내</h1>
+		</div>
 
 	</div>
-  
+
 </body>
 </html>
