@@ -98,23 +98,28 @@
 		});
 	</script>
 	<style>
+		html, body {
+			height: 100%; /* 전체 화면을 차지하도록 설정 */
+			margin: 0; /* 기본 여백 제거 */
+			padding: 0; /* 기본 패딩 제거 */
+			overflow-x: hidden; /* 가로 스크롤 방지 */
+		}
+
 		body {
-			background: #cfd8dc;
-			/*display: flex;
-			justify-content: center;
-			align-items: center;*/
-			overflow: hidden;
-			width: 100%; 
-			height: 100vh;
-			
+		  	background-color: #f0f0f0; /* 배경색 설정 */
+		  	font-family: Arial, sans-serif; /* 기본 폰트 설정 */
+		  	position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
 		}
 		
-		/*.snow_wrap { 
-			overflow: hidden;
-			width: 100%; 
-			height: 100vh; 
-			z-index: 1;
-		}*/
+		.snow_wrap { 
+			position: absolute; /* 또는 fixed, relative 등 필요에 맞게 설정 */
+  			top: 0; /* 원하는 위치에 맞게 조정 */
+			left: 0; /* 원하는 위치에 맞게 조정 */
+			width: 100%; /* 화면 전체를 덮도록 설정 */
+			height: 100%; /* 화면 전체를 덮도록 설정 */
+			overflow: hidden;  /* 눈이 화면을 벗어나지 않도록 숨김 */
+			z-index: -1; /* snow_wrap이 맨 뒤로 가도록 z-index를 낮추기 */
+		}
 		
 		.snow { 
 			background: #141f3e;
@@ -126,11 +131,10 @@
 		}
 		
 		.baer { 
-			position: absolute; 
-			top: 50%;
-			left: 50%;
-			transform: translateY(-50%);
-  			transform: translateX(-50%);
+			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
+		  	top: 0; /* 원하는 위치에 맞게 조정 */
+		  	left: 0; /* 원하는 위치에 맞게 조정 */
+		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
  		}
 
 	</style>	
