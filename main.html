@@ -18,7 +18,6 @@
 		    margin: 0; /* 기본 여백 제거 */
 		    padding: 0; /* 기본 패딩 제거 */
 		    overflow-x: hidden; /* 가로 스크롤 방지 */
-		    overflow-y: scroll; /* 세로 스크롤을 자동으로 처리 */
 		}
 		
 		/* .wrap 박스에 대한 세로 스크롤바 숨기기 */
@@ -29,6 +28,9 @@
 		    position: relative;
 		    overflow-y: scroll; /* 세로 스크롤 추가 */
 		    scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
+		    background-image: url("https://github.com/user-attachments/assets/15332194-da0a-4bd5-803f-c7be6971d88b"); /* 배경 이미지 추가 */
+		    background-size: cover; /* 배경 이미지를 화면에 맞게 채우도록 설정 */
+		    background-position: center; /* 배경 이미지의 위치 중앙 정렬 */
 		}
 		
 		/* 웹킷 기반 브라우저에서 스크롤바 숨기기 */
@@ -37,7 +39,7 @@
 		    height: 0; /* 가로 스크롤바도 숨기려면 이 속성 추가 */
 		}
 		
-		/* 나머지 스타일 */
+		/* 각 섹션에 대한 스타일 */
 		.main, .page1, .page2, .page3 {
 		    width: 100%; /* 전체 너비 */
 		    height: 100vh; /* 화면 높이에 맞게 */
@@ -47,6 +49,19 @@
 		    font-size: 2rem;
 		    text-align: center;
 		    scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
+		}
+		
+		/* 추가 스타일 */
+		.page1 {
+		    background-color: brown;
+		}
+		
+		.page2 {
+		    background-color: orange;
+		}
+		
+		.page3 {
+		    background-color: white;
 		}
 
 	</style>
