@@ -4,7 +4,7 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>🌟송년회 초대장🌟</title>
+	<title> 2024 오합지졸 송년회 </title></title>
 	<script src="https://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 		
@@ -24,9 +24,41 @@
 		}
 
 		body {
-		  	background-color: #f0f0f0; /* 배경색 설정 */
 		  	font-family: Arial, sans-serif; /* 기본 폰트 설정 */
 		  	position: relative; /* 자식 요소가 절대 위치를 사용할 수 있도록 설정 */
+		}
+		
+		.wrap {
+			position: absolute; /* 또는 fixed, relative 등 필요에 맞게 설정 */
+  			top: 0; /* 원하는 위치에 맞게 조정 */
+			left: 0; /* 원하는 위치에 맞게 조정 */
+			width: 100%; /* 화면 전체를 덮도록 설정 */
+			height: 100%; /* 화면 전체를 덮도록 설정 */
+			overflow: hidden;  /* 눈이 화면을 벗어나지 않도록 숨김 */
+		}
+
+		.main {
+			width: 100%;
+			height: 100%;
+			background-color: red;
+		}
+
+		.page1 {
+			width: 100%;
+			height: 100%;
+			background-color: brown;
+		}
+
+		.page2 {
+			width: 100%;
+			height: 100%;
+			background-color: orange;
+		}
+
+		.page3 {
+			width: 100%;
+			height: 100%;
+			background-color: white;
 		}
 		
 	</style>
@@ -35,28 +67,30 @@
   
 <body>
 	<!-- 사운드 -->
-	<audio controls autoplay loop>
-	    <source src="https://raw.githubusercontent.com/TildaWi/TildaWi.github.io/main/snow-and-christmas-261290.mp3" type="audio/mp3">
-	</audio>
 	
 	<!--  -->
-	<div class="main">
+	<div class="wrap">
 
-    	<!-- -->
-    	<div class="page1">
-    	<h1>hello world</h1>
-    	</div>
+	    	<!-- 연말 크리스마스 -->
+	    	<div class="main">
+	    		<h1>일자 시간대 안내</h1>
+	    	</div>
 
-      <!-- -->
-    	<div class="page1">
-    	
-    	</div>
+		<!-- 1부 시상식 컨셉 -->
+	    	<div class="page1">
+	    		<h1>jazz</h1>
+	    	</div>
 
-      <!-- -->
-    	<div class="page1">
-    	
-    	</div>
-    	
+		<!-- 2부 미운 우리 이모들 컨셉 -->
+	    	<div class="page2">
+	    		<h1>찌라시</h1>
+	    	</div>
+
+		<!-- etc -->
+	    	<div class="page3">
+	    		<h1>위치 오는길 안내</h1>
+	    	</div>
+
 	</div>
   
 </body>
