@@ -129,25 +129,21 @@
 		
 		.bear_wrap { 
 			position: relative;
-			z-index: 2;
+			z-index: 3;
 		}
 		
-		.bear { 
+		.bear_off { 
 			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-		  	top: 0; /* 원하는 위치에 맞게 조정 */
-		  	left: 0; /* 원하는 위치에 맞게 조정 */
-		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
+			top: 50%; /* 화면의 세로 중앙 */
+			left: 50%; /* 화면의 가로 중앙 */
+			transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
+		  	z-index: 2; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
  		}
-		.bear2 { 
+		.bear_on { 
 			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-		  	top: 0; /* 원하는 위치에 맞게 조정 */
-		  	left: 300px; /* 원하는 위치에 맞게 조정 */
-		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
- 		}
-		.bear3 { 
-			position: absolute; /* 또는 relative, fixed 등 필요에 맞게 설정 */
-		  	top: 0; /* 원하는 위치에 맞게 조정 */
-		  	left: 500px; /* 원하는 위치에 맞게 조정 */
+			top: 50%; /* 화면의 세로 중앙 */
+			left: 50%; /* 화면의 가로 중앙 */
+			transform: translate(-50%, -50%); /* 정확히 중앙으로 이동 */
 		  	z-index: 1; /* bear_wrap이 위에 오도록 z-index를 높게 설정 */
  		}
 
@@ -161,9 +157,8 @@
 	
 	<!-- 초대장 페이지 산타곰 -->
 	<div class="bear_wrap">
-		<img class="bear" src="https://github.com/user-attachments/assets/d0a42c0e-74b4-4b56-bfff-6243c8d0e57a" alt="산타곰">
-		<img class="bear2" src="https://github.com/user-attachments/assets/933d2686-f76a-47ba-ae26-879535d03cb5" alt="산타곰">
-		<img class="bear3" src="https://github.com/user-attachments/assets/bde760fc-7abc-4a73-a30d-486fecb3b0ea" alt="산타곰">
+		<img class="bear_off" src="https://github.com/user-attachments/assets/711a66f8-37a2-4239-b28a-0f5a145fb487" alt="산타곰_꺼짐">
+		<img class="bear_on" src="https://github.com/user-attachments/assets/021de9ac-3d3d-4ee3-a52c-b9a383cb12f6" alt="산타곰_켜짐">
 	</div>
 </body>
 </html>
