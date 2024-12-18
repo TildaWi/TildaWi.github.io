@@ -81,7 +81,7 @@
             align-items: center;
             z-index: 2;
             opacity: 0;
-            animation: scaleUp 5s 10s forwards;
+            animation: scaleUp 7s 15s forwards; /* 후광 효과 2초 느리게 적용 */
         }
         
         #cat {
@@ -164,21 +164,41 @@
 
     <!-- 첫 번째 문장 -->
     <div class="first-sentence">
-        <p>지금은 2024년, 추운겨울...</p>
+        <p>지금은 2024년,</p> 
+        <p>추운겨울...</p>
         <p>어디 재밌는 일 좀 뭐 없나....</p>
     </div>
 
     <!-- 두 번째 문장 -->
     <div class="second-sentence">
-        <p>저게 뭐지? 뭔가 다가오는데...</p>
+        <p>저게 뭐지?</p> 
+        <p>뭔가 다가오는데...</p>
         <p>고양이? 고양이가 오고 있는 건가....?</p>
+    </div>
+
+    <!-- 세 번째 문장 -->
+    <div class="first-sentence">
+        <p>안녕하세요,</p>
+        <p>(주)오합지졸에서 보낸 편지를 찾으러 오셨나요?</p>
+    </div>
+
+    <!-- 네 번째 문장 -->
+    <div class="first-sentence">
+      <p>잘 오셨네요 마침</p>
+      <p>과거로부터의 편지가 도착했는데...</p>
+    </div>
+
+    <!-- 다섯 번째 문장 -->
+    <div class="first-sentence">
+      <p>편지를 받는 건 본인 자유...</p>
+      <p>받길 희망하신다면 저를 클릭해주세요</p>
     </div>
 
     <!-- 고양이 컨테이너 -->
     <div class="cat-container">
         <img id="cat" src="/image/cat.png" alt="고양이">
-    </div>    
-
+    </div>  
+  
     <!-- 모달창 컨테이너 -->
     <div id="modal" class="modal hidden">
       <div class="modal-content">
