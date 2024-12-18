@@ -86,6 +86,33 @@
             height: auto;
             filter: drop-shadow(0 0 10px transparent);
         }
+
+        .cat-talk {
+          position: fixed;
+          bottom: 20px;
+          left: 50%;
+          transform: translateX(-50%);
+          background: rgba(255, 255, 255, 0.9);
+          padding: 15px 20px;
+          border-radius: 15px;
+          box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+          max-width: 90%;
+          z-index: 5;
+          font-family: 'Courier New', Courier, monospace;
+        }
+        
+        #talk-lines {
+          margin: 0;
+          padding: 0;
+          list-style-type: none;
+        }
+        
+        #talk-lines li {
+          display: none;
+          font-size: 16px;
+          line-height: 1.5;
+          color: #333;
+        }
         
         @keyframes scaleUp {
             0% {
@@ -160,113 +187,150 @@
         <p>고양이? 고양이가 오고 있는 건가....?</p>
     </div>
     
-    <!-- 고양이 -->
-    <div class="cat-container">
-        <img id="cat" src="/image/cat.png" alt="고양이">
-    </div>
-
     <!-- 고양이 말풍선 -->
     <div class="cat-talk">
-        <p>안녕하세요! 행운의 편지를 받으러 오셨군요!</p>
+        <ul id="talk-lines">
+        <!-- 타이핑될 문장들이 순차적으로 표시됩니다 -->
+        </ul>
     </div>
 
     <!-- Modal Container -->
     <div id="modal" class="modal hidden">
-        <div class="modal-content">
-            <h1>※ (주) 오합지졸 ※</h1>
-            <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
-            <button id="accept-button">수락하기</button>
-            <button id="reject-button">거절은 거절한다.</button>
-        </div>
+      <div class="modal-content">
+        <h1>※ (주) 오합지졸 ※</h1>
+        <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
+        <button id="accept-button">수락하기</button>
+        <button id="reject-button">거절하기</button>
+      </div>
     </div>
 
-    <script>
-        $(document).ready(function() {
-            const canvas = $('.snow')[0];
-            const context = canvas.getContext('2d');
-            let canvasWidth = $('.snow_wrap').width();
-            let canvasHeight = $('.snow_wrap').height();
-            let lastDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
+<script>
+    $(document).ready(function() {
+        const canvas = $('.snow')[0];
+        const context = canvas.getContext('2d');
+        let canvasWidth = $('.snow_wrap').width();
+        let canvasHeight = $('.snow_wrap').height();
+        let lastDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
-            function createParticles() {
-                snowParticles = []; 
-                const particleCount = lastDeviceType === 'mobile' ? 40 : 100; 
-                for (let i = 0; i < particleCount; i++) {
-                    snowParticles.push(new createParticle());
+        function createParticles() {
+            snowParticles = []; 
+            const particleCount = lastDeviceType === 'mobile' ? 40 : 100; 
+            for (let i = 0; i < particleCount; i++) {
+                snowParticles.push(new createParticle());
+            }
+        }
+
+        function setCanvasSize() {
+            const currentDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
+            if (currentDeviceType !== lastDeviceType) {
+                lastDeviceType = currentDeviceType;
+                createParticles();
+            }
+
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            tempCanvas.width = canvasWidth;
+            tempCanvas.height = canvasHeight;
+            tempCtx.drawImage(canvas, 0, 0);
+
+            canvasWidth = $('.snow_wrap').width();
+            canvasHeight = $('.snow_wrap').height();
+            canvas.width = canvasWidth;
+            canvas.height = canvasHeight;
+
+            context.drawImage(tempCanvas, 0, 0);
+        }
+
+        let snowParticles = []; 
+
+        function createParticle() {
+            this.x = Math.random() * canvasWidth;
+            this.y = Math.random() * canvasHeight;
+            this.vx = Math.random() * 4 - 1;
+            this.vy = Math.random() * 4 + 1;
+            this.color = `rgba(255, 255, 255, ${Math.random()})`;
+            this.radius = Math.random() * 5 + 2;
+        }
+
+        function draw() {
+            context.clearRect(0, 0, canvasWidth, canvasHeight);
+            snowParticles.forEach(function(particle) {
+                context.beginPath();
+                let gradient = context.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius);
+                gradient.addColorStop(1, particle.color);
+                gradient.addColorStop(1, "rgb(66, 66, 66)");
+                context.fillStyle = gradient;
+                context.arc(particle.x, particle.y, particle.radius, Math.PI * 2, false);
+                context.fill();
+                particle.x += particle.vx;
+                particle.y += particle.vy;
+                if (particle.x < -50) particle.x = canvasWidth + 50;
+                if (particle.y < -50) particle.y = canvasHeight + 50;
+                if (particle.x > canvasWidth + 50) particle.x = -50;
+                if (particle.y > canvasHeight + 50) particle.y = -50;
+            });
+        }
+
+        $(window).resize(setCanvasSize);
+        setCanvasSize(); 
+        createParticles(); 
+        setInterval(draw, 33);
+
+        // 고양이 말풍선 타이핑 효과
+        const lines = [
+            "안녕하세요, 혹시 (주)오합지졸에서 발송한 행운의 편지를 받으러 오셨나요?",
+            "마침, 과거로부터 편지가 오늘 도착했는데...",
+            "편지를 받아보는 건 자유라 본인이 선택하시면 됩니다."
+        ];
+        let currentLine = 0;
+
+        function typeLine(line, callback) {
+            let charIndex = 0;
+            const target = $('<li></li>');
+            $('#talk-lines').append(target);
+
+            function typeChar() {
+                if (charIndex < line.length) {
+                    target.append(line[charIndex]);
+                    charIndex++;
+                    setTimeout(typeChar, 50); // 타이핑 속도
+                } else {
+                    if (callback) {
+                        setTimeout(callback, 1000); // 다음 문장 출력 전 대기 시간
+                    }
                 }
             }
+            typeChar();
+        }
 
-            function setCanvasSize() {
-                const currentDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
-                if (currentDeviceType !== lastDeviceType) {
-                    lastDeviceType = currentDeviceType;
-                    createParticles();
-                }
-
-                const tempCanvas = document.createElement('canvas');
-                const tempCtx = tempCanvas.getContext('2d');
-                tempCanvas.width = canvasWidth;
-                tempCanvas.height = canvasHeight;
-                tempCtx.drawImage(canvas, 0, 0);
-
-                canvasWidth = $('.snow_wrap').width();
-                canvasHeight = $('.snow_wrap').height();
-                canvas.width = canvasWidth;
-                canvas.height = canvasHeight;
-
-                context.drawImage(tempCanvas, 0, 0);
+        function displayNextLine() {
+            if (currentLine < lines.length) {
+                typeLine(lines[currentLine], displayNextLine);
+                currentLine++;
+            } else {
+                // 모든 문장이 출력된 후 모달 창 열기
+                setTimeout(() => {
+                    $('#modal').removeClass('hidden');
+                }, 1000);
             }
+        }
 
-            let snowParticles = []; 
+        // 고양이가 나타난 후 말풍선 타이핑 시작
+        setTimeout(() => {
+            $('.cat-talk').fadeIn(1000, displayNextLine);
+        }, 15000); // 고양이 등장 후 대기 시간
 
-            function createParticle() {
-                this.x = Math.random() * canvasWidth;
-                this.y = Math.random() * canvasHeight;
-                this.vx = Math.random() * 4 - 1;
-                this.vy = Math.random() * 4 + 1;
-                this.color = `rgba(255, 255, 255, ${Math.random()})`;
-                this.radius = Math.random() * 5 + 2;
-            }
-
-            function draw() {
-                context.clearRect(0, 0, canvasWidth, canvasHeight);
-                snowParticles.forEach(function(particle) {
-                    context.beginPath();
-                    let gradient = context.createRadialGradient(particle.x, particle.y, 0, particle.x, particle.y, particle.radius);
-                    gradient.addColorStop(1, particle.color);
-                    gradient.addColorStop(1, "rgb(66, 66, 66)");
-                    context.fillStyle = gradient;
-                    context.arc(particle.x, particle.y, particle.radius, Math.PI * 2, false);
-                    context.fill();
-                    particle.x += particle.vx;
-                    particle.y += particle.vy;
-                    if (particle.x < -50) particle.x = canvasWidth + 50;
-                    if (particle.y < -50) particle.y = canvasHeight + 50;
-                    if (particle.x > canvasWidth + 50) particle.x = -50;
-                    if (particle.y > canvasHeight + 50) particle.y = -50;
-                });
-            }
-
-            $(window).resize(setCanvasSize);
-            setCanvasSize(); 
-            createParticles(); 
-            setInterval(draw, 33);
-
-            // 고양이가 나타난 후 말풍선 나타나기
-            setTimeout(() => {
-                $('.cat-talk').fadeIn(1000);
-            }, 15000);
-
-            // 고양이 클릭 시 모달 열기
-            $('#cat').on('click', function() {
-                $('#modal').removeClass('hidden');
-            });
-
-            // 버튼 클릭 이벤트
-            $('#accept-button').on('click', function() {
-                window.open('past.html', '_blank');
-            });
+        // 고양이 클릭 시 모달 열기
+        $('#cat').on('click', function() {
+            $('#modal').removeClass('hidden');
         });
-    </script>
+
+        // 버튼 클릭 이벤트
+        $('#accept-button').on('click', function() {
+            window.open('past.html', '_blank');
+        });
+    });
+</script>
+
 </body>
 </html>
