@@ -20,7 +20,7 @@
             position: relative;
         }
 
-        /*눈 내리는 효과*/
+        /* 눈 내리는 효과 */
         .snow_wrap { 
             position: absolute;
             top: 0;
@@ -30,30 +30,15 @@
             overflow: hidden;
             z-index: 0;
         }
-        
+
         .snow { 
             width: 100%;
             height: 100%;
             background: #222834;
         } 
 
-        /*사용자 타이핑 효과*/
+        /* 첫 번째, 두 번째 문장 */
         .first-sentence {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            font-family: 'Courier New', Courier, monospace;
-            font-size: 20px;
-            text-align: center;
-            color: white;
-            z-index: 1;
-            opacity: 0;
-            animation: fadeInOut 5s forwards;
-            filter: drop-shadow(0 0 10px white);
-        }
-
-        .second-sentence {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -81,27 +66,27 @@
             }
         }
 
-        /*고양이 이미지 효과*/
+        /* 고양이 이미지 수평/수직 중앙 */
         .cat-container {
             position: absolute;
             bottom: 50%;
             left: 50%;
-            transform: translateX(-50%);
+            transform: translate(-50%, 50%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 2;
             opacity: 0;
-            animation: scaleUp 7s 15s forwards; /* 후광 효과 2초 느리게 적용 */
+            animation: scaleUp 7s 15s forwards; /* 고양이 등장 */
         }
-        
+
         #cat {
             max-width: 250px;
             width: 100%;
             height: auto;
             filter: drop-shadow(0 0 10px transparent);
         }
-        
+
         @keyframes scaleUp {
             0% {
                 transform: scale(0.2);
@@ -115,7 +100,23 @@
             }
         }
 
-        /*모달창 효과*/
+        /* 세 번째, 네 번째, 다섯 번째 문장 */
+        .cattalk {
+            position: absolute;
+            bottom: calc(50% + 70px); /* 고양이 이미지 위로 70px */
+            left: 50%;
+            transform: translateX(-50%);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px;
+            text-align: center;
+            color: white;
+            z-index: 3;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+            filter: drop-shadow(0 0 10px white);
+        }
+
+        /* 모달창 효과 */
         .modal {
             position: fixed;
             top: 0;
@@ -128,34 +129,16 @@
             align-items: center;
             z-index: 10;
         }
-        
+
         .modal-content {
             background: white;
             padding: 20px;
             border-radius: 10px;
             text-align: center;
             animation: fadeIn 0.6s;
-            opacity: 0.8;
+            opacity: 0.9;
         }
 
-        .modal-content h1 {
-            font-size: 20px;
-        }
-
-        .accept-button {
-            background-color:#0a0a23;
-            color: #fff;
-            border:none;
-            font-size: 16px;
-        }
-        
-        .reject-button {
-            background-color: red;
-            color: #fff;
-            border:none;
-            font-size: 16px;
-        }
-      
         .hidden {
             display: none; /* hidden 클래스 스타일 정의 */
         }
@@ -177,49 +160,42 @@
 
     <!-- 첫 번째 문장 -->
     <div class="first-sentence" style="animation-delay: 0s;">
-        <p>지금은 2024년,</p> 
-        <p>추운겨울...</p>
-        <p>어디 재밌는 일 좀 뭐 없나....</p>
+        <p>지금은 2024년, 추운 겨울...</p>
     </div>
 
     <!-- 두 번째 문장 -->
     <div class="first-sentence" style="animation-delay: 5s;">
-        <p>저게 뭐지?</p> 
-        <p>뭔가 다가오는데...</p>
-        <p>고양이? 고양이가 오고 있는 건가....?</p>
+        <p>저게 뭐지? 뭔가 다가오는데...</p>
+    </div>
+
+    <!-- 고양이 이미지 -->
+    <div class="cat-container">
+        <img id="cat" src="/image/cat.png" alt="고양이">
     </div>
 
     <!-- 세 번째 문장 -->
-    <div class="cattalk ct1" style="animation-delay: 12s;">
-        <p>안녕하세요,</p>
-        <p>(주)오합지졸에서 보낸 편지를 찾으러 오셨나요?</p>
+    <div class="cattalk" style="animation-delay: 17s;">
+        <p>안녕하세요, 혹시 (주)오합지졸에서 발송한 편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
-    <div class="cattalk ct2" style="animation-delay: 19s;">
-      <p>잘 오셨네요 마침</p>
-      <p>과거로부터의 편지가 도착했는데...</p>
+    <div class="cattalk" style="animation-delay: 23s;">
+        <p>잘 오셨네요. 마침 과거로부터의 편지가 도착했는데...</p>
     </div>
 
     <!-- 다섯 번째 문장 -->
-    <div class="cattalk ct3" style="animation-delay: 26s;">
-      <p>편지를 받는 건 본인 자유...</p>
-      <p>받길 희망하신다면 저를 클릭해주세요</p>
+    <div class="cattalk" style="animation-delay: 29s;">
+        <p>편지를 받는 건 본인 자유... 희망하신다면 저를 클릭해주세요.</p>
     </div>
 
-    <!-- 고양이 컨테이너 -->
-    <div class="cat-container">
-        <img id="cat" src="/image/cat.png" alt="고양이">
-    </div>  
-  
-    <!-- 모달창 컨테이너 -->
+    <!-- 모달창 -->
     <div id="modal" class="modal hidden">
-      <div class="modal-content">
-        <h1>※ (주) 오합지졸 ※</h1>
-        <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
-        <button id="accept-button">수락하기</button>
-        <button id="reject-button">거절은 거절</button>
-      </div>
+        <div class="modal-content">
+            <h1>※ (주) 오합지졸 ※</h1>
+            <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
+            <button id="accept-button">수락하기</button>
+            <button id="reject-button">거절하기</button>
+        </div>
     </div>
 
 <script>
@@ -283,7 +259,6 @@
             window.open('past.html', '_blank');
         });
 
-        // 초기 설정
         $('#modal').addClass('hidden');
     });
 </script>
