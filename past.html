@@ -8,14 +8,28 @@
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 
     <style>
-        .cherry_blossom {
-            overflow: hidden;
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+        }
+
+        body {
+            width: 100%;
+            font-family: Arial, sans-serif;
             position: relative;
-            width: 600px;
-            height: 600px;
-            background: url('sakura.png') center center no-repeat;
-            background-size: cover;
-            perspective: 1000px;
+            background-color: #ffffff;
+        }
+        
+        .cherry_blossom {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
         }
         
         .cherry_blossom .petal {
