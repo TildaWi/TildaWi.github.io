@@ -4,42 +4,190 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> 과거로부터의 초대 </title>
+    <title>과거로부터의 초대</title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-        // 타이핑 효과
-        const text = "과거로부터 온 행운의 편지입니다. 과거 여행을 수락하시겠습니까?";
-        let i = 0;
-    
-        function typeEffect() {
-          if (i < text.length) {
-            $('#typing').text(function(_, currentText) {
-              return currentText + text.charAt(i);
-            });
-            i++;
-            setTimeout(typeEffect, 100); // 타이핑 속도 조절
-          }
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
         }
-    
-        // 고양이를 클릭하면 모달 열기
-        $('#cat').on('click', function() {
-          $('#modal').removeClass('hidden');
-          typeEffect(); // 타이핑 효과 시작
-        });
-    
-        // "수락하기" 버튼 클릭 시 새창으로 이동
-        $('#accept-button').on('click', function() {
-          window.open('past.html', '_blank');
-        });
+
+        body {
+            width: 100%;
+            font-family: Arial, sans-serif;
+            position: relative;
+        }
         
-        $(document).ready(function(){
+        .snow_wrap { 
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: 0;
+        }
+        
+        .snow { 
+            width: 100%;
+            height: 100%;
+            background: #222834;
+        } 
+        
+        .first-sentence, .second-sentence {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+        }
+
+        .second-sentence {
+            animation-delay: 5s;
+        }
+
+        @keyframes fadeInOut {
+            0% {
+                opacity: 0;
+            }
+            20%, 80% {
+                opacity: 1;
+                filter: drop-shadow(0 0 10px #fff);
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        .cat-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            opacity: 0;
+            animation: scaleUp 5s 10s forwards;
+        }
+            
+        #cat {
+            max-width: 250px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 10px transparent);
+        }
+        
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.2);
+                filter: drop-shadow(0 0 10px transparent);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px #ffd700);
+                opacity: 1;
+            }
+        }
+
+        .cat-talk {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.8);
+            padding: 10px 20px;
+            border-radius: 10px;
+            font-size: 16px;
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+    </style>    
+</head>
+<body>
+    <div class="snow_wrap">
+        <canvas class="snow"></canvas>
+    </div>
+
+    <!-- 첫 번째 문장 -->
+    <div class="first-sentence">
+        <p>지금은 2024년, 추운겨울</p>
+        <p>어디 재밌는 일 좀 뭐 없나</p>
+    </div>
+
+    <!-- 두 번째 문장 -->
+    <div class="second-sentence">
+        <p>저게 뭐지? 뭔가 다가오는데...</p>
+        <p>고양이? 고양이가 오고 있는 건가....?</p>
+    </div>
+    
+    <!-- 고양이 -->
+    <div class="cat-container">
+        <img id="cat" src="/image/cat.png" alt="고양이">
+    </div>
+
+    <!-- 고양이 말풍선 -->
+    <div class="cat-talk">
+        <p>안녕하세요! 행운의 편지를 받으러 오셨군요!</p>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <h1>※ (주) 오합지졸 ※</h1>
+            <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
+            <button id="accept-button">수락하기</button>
+            <button id="reject-button">거절은 거절한다.</button>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
             const canvas = $('.snow')[0];
             const context = canvas.getContext('2d');
-            
             let canvasWidth = $('.snow_wrap').width();
             let canvasHeight = $('.snow_wrap').height();
             let lastDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
-            
+
             function createParticles() {
                 snowParticles = []; 
                 const particleCount = lastDeviceType === 'mobile' ? 40 : 100; 
@@ -47,25 +195,25 @@
                     snowParticles.push(new createParticle());
                 }
             }
-            
+
             function setCanvasSize() {
                 const currentDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
                 if (currentDeviceType !== lastDeviceType) {
                     lastDeviceType = currentDeviceType;
                     createParticles();
                 }
-                
+
                 const tempCanvas = document.createElement('canvas');
                 const tempCtx = tempCanvas.getContext('2d');
                 tempCanvas.width = canvasWidth;
                 tempCanvas.height = canvasHeight;
                 tempCtx.drawImage(canvas, 0, 0);
-            
+
                 canvasWidth = $('.snow_wrap').width();
                 canvasHeight = $('.snow_wrap').height();
                 canvas.width = canvasWidth;
                 canvas.height = canvasHeight;
-            
+
                 context.drawImage(tempCanvas, 0, 0);
             }
 
@@ -102,141 +250,23 @@
             $(window).resize(setCanvasSize);
             setCanvasSize(); 
             createParticles(); 
-            setInterval(draw, 33); 
+            setInterval(draw, 33);
+
+            // 고양이가 나타난 후 말풍선 나타나기
+            setTimeout(() => {
+                $('.cat-talk').fadeIn(1000);
+            }, 15000);
+
+            // 고양이 클릭 시 모달 열기
+            $('#cat').on('click', function() {
+                $('#modal').removeClass('hidden');
+            });
+
+            // 버튼 클릭 이벤트
+            $('#accept-button').on('click', function() {
+                window.open('past.html', '_blank');
+            });
         });
     </script>
-    <style>
-        html, body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-            overflow-x: hidden;
-        }
-
-        body {
-            width: 100%;
-            font-family: Arial, sans-serif;
-            position: relative;
-        }
-        
-        .snow_wrap { 
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;  /* 배경 이미지를 맨 뒤로 설정 */
-        }
-        
-        .snow { 
-            width: 100%;
-            height: 100%;
-            background: #394449;
-        } 
-        
-        .cat-container {
-              position: absolute;
-              top: 50%;
-              left: 50%;
-              transform: translate(-50%, -50%);
-              display: flex;
-              justify-content: center;
-              align-items: center;
-              z-index: 2;  /* 고양이가 배경 이미지 위에 보이도록 설정 */
-        }
-            
-        #cat {
-              max-width: 250px;
-              width: 100%;
-              height: auto;
-              animation: scaleUp 5s ease-in-out forwards;
-              filter: drop-shadow(0 0 10px transparent);
-        }
-        
-        @keyframes scaleUp {
-              0% {
-                transform: scale(0.2);
-                filter: drop-shadow(0 0 10px transparent);
-              }
-              100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px #ffd700); /* 후광 네온 효과 */
-              }
-        }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.8);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 10;
-            }
-            
-            .modal-content {
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            animation: fadeIn 0.5s;
-        }
-        
-        .hidden {
-            display: none;
-        }
-        
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
-    #typing {
-        font-family: 'Courier New', Courier, monospace;
-        font-size: 18px;
-        color: white;
-        white-space: pre-wrap;
-    }
-
-
-
-
-    </style>    
-</head>
-<body>
-    <!-- 사운드 -->
-    <audio autoplay loop muted style="display:none;">
-        <source src="" type="audio/mp3">
-    </audio>
-
-    <!-- 초대장 페이지 백그라운드 -->
-    <div class="snow_wrap">
-        <canvas class="snow"></canvas>
-    </div>
-    
-    <!-- 고양이 -->
-    <div class="cat-container">
-      <img id="cat" src="/image/cat.png" alt="고양이">
-    </div>
-
-    <!-- Modal Container -->
-    <div id="modal" class="modal hidden">
-        <div class="modal-content">
-            <p id="letter">"과거로부터 온 행운의 편지입니다. 과거 여행을 수락하시겠습니까?"</p>
-            <button id="accept-button">수락하기</button>
-        </div>
-    </div>
-
-    <p id="typing"></p>
-
-
 </body>
 </html>
