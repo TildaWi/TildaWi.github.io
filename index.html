@@ -44,7 +44,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 20px;
+            font-size: 24px;
             text-align: center;
             color: white;
             z-index: 1;
@@ -69,8 +69,11 @@
         /* 고양이 이미지 수평/수직 중앙 */
         .cat-container {
             position: absolute;
-            bottom: 50%;
-            left: 50%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
             transform: translate(-50%, 50%);
             display: flex;
             justify-content: center;
@@ -81,7 +84,7 @@
         }
 
         #cat {
-            max-width: 250px;
+            max-width: 200px;
             width: 100%;
             height: auto;
             filter: drop-shadow(0 0 10px transparent);
@@ -159,12 +162,12 @@
     </div>
 
     <!-- 첫 번째 문장 -->
-    <div class="first-sentence" style="animation-delay: 0s;">
-        <p>지금은 2024년, 추운 겨울...</p>
+    <div class="first-sentence" style="animation-delay: 2s;">
+        <p>지금은 2024년, 추운 겨울 어느 날...</p>
     </div>
 
     <!-- 두 번째 문장 -->
-    <div class="first-sentence" style="animation-delay: 5s;">
+    <div class="first-sentence" style="animation-delay: 7s;">
         <p>저게 뭐지? 뭔가 다가오는데...</p>
     </div>
 
@@ -174,17 +177,17 @@
     </div>
 
     <!-- 세 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 17s;">
+    <div class="cattalk" style="animation-delay: 24s;">
         <p>안녕하세요, 혹시 (주)오합지졸에서 발송한 편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 23s;">
+    <div class="cattalk" style="animation-delay: 29s;">
         <p>잘 오셨네요. 마침 과거로부터의 편지가 도착했는데...</p>
     </div>
 
     <!-- 다섯 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 29s;">
+    <div class="cattalk" style="animation-delay: 34s;">
         <p>편지를 받는 건 본인 자유... 희망하신다면 저를 클릭해주세요.</p>
     </div>
 
@@ -194,7 +197,7 @@
             <h1>※ (주) 오합지졸 ※</h1>
             <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
             <button id="accept-button">수락하기</button>
-            <button id="reject-button">거절하기</button>
+            <button id="reject-button">거절은 거절.</button>
         </div>
     </div>
 
