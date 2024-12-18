@@ -19,7 +19,8 @@
             font-family: Arial, sans-serif;
             position: relative;
         }
-        
+
+        /*눈 내리는 효과*/
         .snow_wrap { 
             position: absolute;
             top: 0;
@@ -35,7 +36,8 @@
             height: 100%;
             background: #222834;
         } 
-        
+
+        /*사용자 타이핑 효과*/
         .first-sentence, .second-sentence {
             position: absolute;
             top: 50%;
@@ -67,6 +69,7 @@
             }
         }
 
+        /*고양이 이미지 효과*/
         .cat-container {
             position: absolute;
             top: 50%;
@@ -76,17 +79,31 @@
             justify-content: center;
             align-items: center;
             z-index: 2;
-            opacity: 0;
-            animation: scaleUp 5s 10s forwards;
+            opacity: 0; /* 초기 상태 */
+            animation: scaleUp 5s 10s forwards; /* 10초 후 애니메이션 시작 */
         }
-            
+        
         #cat {
             max-width: 250px;
             width: 100%;
             height: auto;
             filter: drop-shadow(0 0 10px transparent);
         }
+        
+        @keyframes scaleUp {
+            0% {
+                transform: scale(0.2);
+                filter: drop-shadow(0 0 10px transparent);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px #ffd700);
+                opacity: 1;
+            }
+        }
 
+        /*고양이 말풍선 효과*/
         .cat-talk {
           position: fixed;
           bottom: 20px;
@@ -113,32 +130,9 @@
           line-height: 1.5;
           color: #333;
         }
-        
-        @keyframes scaleUp {
-            0% {
-                transform: scale(0.2);
-                filter: drop-shadow(0 0 10px transparent);
-                opacity: 0;
-            }
-            100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 20px #ffd700);
-                opacity: 1;
-            }
-        }
+    
 
-        .cat-talk {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.8);
-            padding: 10px 20px;
-            border-radius: 10px;
-            font-size: 16px;
-            display: none;
-        }
-
+        /*모달창 효과*/
         .modal {
             position: fixed;
             top: 0;
@@ -280,19 +274,20 @@
         createParticles();
         setInterval(draw, 33);
 
-        // 고양이 말풍선 타이핑 효과
+        // 고양이 이미지 로드 확인
+        const catImage = $('#cat');
         const lines = [
             "안녕하세요, 혹시 (주)오합지졸에서 발송한 행운의 편지를 받으러 오셨나요?",
             "마침, 과거로부터 편지가 오늘 도착했는데...",
             "편지를 받아보는 건 자유라 본인이 선택하시면 됩니다."
         ];
         let currentLine = 0;
-
+    
         function typeLine(line, callback) {
             let charIndex = 0;
             const target = $('<li></li>');
             $('#talk-lines').append(target);
-
+    
             function typeChar() {
                 if (charIndex < line.length) {
                     target.append(line[charIndex]);
@@ -312,20 +307,22 @@
                 typeLine(lines[currentLine], displayNextLine);
                 currentLine++;
             } else {
-                // 모든 문장이 출력된 후 모달 창 열기
+                console.log("모든 문장 출력 완료");
                 setTimeout(() => {
                     $('#modal').removeClass('hidden');
-                }, 1000);
+                }, 1000); // 모든 문장 출력 후 모달 열기
             }
         }
 
+        // 고양이 이미지 애니메이션 시작
+        setTimeout(() => {
+            console.log("고양이 이미지 애니메이션 시작");
+            $('.cat-container').css('opacity', '1');
+            $('.cat-talk').fadeIn(1000, displayNextLine);
+        }, 15000); // 고양이 등장 및 말풍선 타이핑 시작
+
         // 모달 숨기기 초기화
         $('#modal').addClass('hidden');
-
-        // 고양이가 나타난 후 말풍선 타이핑 시작
-        setTimeout(() => {
-            $('.cat-talk').fadeIn(1000, displayNextLine);
-        }, 15000);
 
         // 버튼 클릭 이벤트
         $('#accept-button').on('click', function () {
