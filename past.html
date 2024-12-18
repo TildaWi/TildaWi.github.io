@@ -4,77 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>2024 오합지졸 송년회</title>
+    <title> 오합지졸 과거 여행 </title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-    <script>
-        $(document).ready(function(){
-
-        });
-    </script>
 
     <style>
-        html, body {
-            height: 100%; /* 전체 화면을 차지하도록 설정 */
-            margin: 0; /* 기본 여백 제거 */
-            padding: 0; /* 기본 패딩 제거 */
-            overflow-x: hidden; /* 가로 스크롤 방지 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* .wrap 박스에 대한 스타일 */
-        .wrap {
-            width: 100%;
-            max-width: 1080px; /* 최대 너비 1080px 설정 */
-            height: 100%;
-            max-height: 1940px; /* 최대 높이 1940px 설정 */
-            margin: 0 auto; /* 화면 중앙에 배치 */
+        .cherry_blossom {
+            overflow: hidden;
             position: relative;
-            overflow-y: auto; /* 세로 스크롤이 가능하도록 설정 */
-            scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
-            aspect-ratio: 9 / 16; /* 9:16 비율 고정 */
-            box-sizing: border-box;
-        }
-
-        /* 각 섹션에 대한 스타일 */
-        .main, .page1, .page2, .page3 {
-            width: 100%; /* 전체 너비 */
-            height: 100%; /* 화면 높이에 맞게 */
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 2rem;
-            text-align: center;
-            scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
-            box-sizing: border-box; /* 패딩과 테두리가 너비와 높이에 포함되도록 설정 */
-        }
-
-        /* .main 페이지에 배경 이미지 적용 */
-        .main {
-            background-image: url("https://github.com/user-attachments/assets/b8ce9f01-b241-4932-80dd-ab7df79253fa");
-            background-position: center;
-            background-repeat: no-repeat;
+            width: 600px;
+            height: 600px;
+            background: url('sakura.png') center center no-repeat;
             background-size: cover;
+            perspective: 1000px;
         }
-
-        .page1 {
-            background-image: url("https://github.com/user-attachments/assets/6b344f28-2c37-4cf2-8705-ddcf79c2b5a6");
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            pading: 15px
+        
+        .cherry_blossom .petal {
+            position: absolute;
+            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
+            border-radius: 10% 50% 40% 50%;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 1000ms linear;
         }
-
-        /* page2와 page3의 배경을 흰색으로 변경 */
-        .page2, .page3 {
-            background-color: #ffffff; /* 흰색 배경 */
-        }
-
-        @keyframes cursor {
-            0% { border-right: 1px solid #fff; }
-            50% { border-right: 1px solid #000; }
-            100% { border-right: 1px solid #fff; }
+        
+        @keyframes fall {
+            0% {
+                top: 0;
+                opacity: 1;
+            }
+        
+            80% {
+                opacity: 1;
+            }
+        
+            100% {
+                top: 100%;
+                opacity: 0.2;
+            }
         }
 
         /* 모바일 뷰에서 반응형 설정 */
@@ -91,29 +59,99 @@
     </style>
 </head>
 <body>
-    <div class="wrap">
 
-        <!-- 연말 크리스마스 -->
-        <div class="main">
+    <!-- 벚꽃 날리는 효과 -->
+    <div class="cherry_blossom"></div>
 
-        </div>
 
-        <!-- 1부 시상식 컨셉 -->
-        <div class="page1">
- 
-        </div>
 
-        <!-- 2부 미운 우리 이모들 컨셉 -->
-        <div class="page2">
+    <script>
+        $(document).ready(function(){
+
+            // 기본 값 설정
+            const defaults = {
+                speed: 5,
+                maxSize: 15,
+                minSize: 10,
+                newOn: 400
+            };
+            
+            // 벚꽃 영역 크기를 저장할 변수
+            var $wrap = $('.cherry_blossom');
+            let wrapH = $wrap.height();
+            let wrapW = $wrap.width();
+            
+            // 벚꽃 잎 생성
+            const $petal = $('<span class="petal"></span>');
+            
+            // 랜덤 회전 값을 생성하는 함수
+            const getRandomRotate = () => {
+                const rotateX = 360;
+                const rotateY = Math.random() * 60 - 30;
+                const rotateZ = Math.random() * 120 - 30;
+                const translateX = Math.random() * 10 - 5;
+                const translateY = Math.random() * 10 - 10;
+                const translateZ = Math.random() * 15;
+                return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
+            };
+            
+            // 무작위 흔들림 애니메이션 배열 생성
+            const randomSwayAnims = [...Array(10)].map(getRandomRotate);
+            
+            // 특정 요소에 흔들림 애니메이션 적용
+            const applySwayAnim = (element) => {
+                const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
+                element.css('transform', randomSway);
+                setTimeout(() => {
+                    applySwayAnim(element);
+                }, 1000);
+            };
+            
+            // 벚꽃 잎 생성 함수
+            const petalGen = () => {
+                setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
+            
+                const petal = $petal.clone();
+                const size = Math.floor(Math.random() * (defaults.maxSize - defaults.minSize + 1)) + defaults.minSize;
+                const startPosLeft = Math.random() * wrapW;
+                const fallTime = (wrapH * 0.1 + Math.random() * 5) / defaults.speed;
+                const horizontalOffset = Math.random() * 2 - 1;
+            
+                // 애니메이션 끝나면 제거
+                petal.on('animationend', () => {
+                    petal.remove();
+                }).css({
+                    width: size,
+                    height: size,
+                    left: startPosLeft,
+                    position: 'absolute',
+                    animation: `fall ${fallTime}s linear`
+                }).appendTo($wrap);
+            
+                // 위치 업데이트 함수
+                const updatePos = () => {
+                    petal.css('left', `+=${horizontalOffset}`);
+                    requestAnimationFrame(updatePos);
+                };
+            
+                updatePos();
+                applySwayAnim(petal);
+            };
+            
+            // 창 크기가 변경될 때 영역 크기 업데이트
+            $(window).resize(() => {
+                wrapH = $wrap.height();
+                wrapW = $wrap.width();
+            });
+            
+            // 로딩 완료 후 벚꽃 잎 생성 시작
+            $(window).on('load', () => {
+                requestAnimationFrame(petalGen);
+            });
+
         
-        </div>
-
-        <!-- 기타 -->
-        <div class="page3">
-         
-        </div>
-
-    </div>
+        });
+    </script>
 
 </body>
 </html>
