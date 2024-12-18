@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2024 오합지졸 송년회</title>
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <script>
+        $(document).ready(function(){
+
+        });
+    </script>
+
+    <style>
+        html, body {
+            height: 100%; /* 전체 화면을 차지하도록 설정 */
+            margin: 0; /* 기본 여백 제거 */
+            padding: 0; /* 기본 패딩 제거 */
+            overflow-x: hidden; /* 가로 스크롤 방지 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* .wrap 박스에 대한 스타일 */
+        .wrap {
+            width: 100%;
+            max-width: 1080px; /* 최대 너비 1080px 설정 */
+            height: 100%;
+            max-height: 1940px; /* 최대 높이 1940px 설정 */
+            margin: 0 auto; /* 화면 중앙에 배치 */
+            position: relative;
+            overflow-y: auto; /* 세로 스크롤이 가능하도록 설정 */
+            scroll-snap-type: y mandatory; /* 스크롤 시 각 섹션이 자연스럽게 붙게 설정 */
+            aspect-ratio: 9 / 16; /* 9:16 비율 고정 */
+            box-sizing: border-box;
+        }
+
+        /* 각 섹션에 대한 스타일 */
+        .main, .page1, .page2, .page3 {
+            width: 100%; /* 전체 너비 */
+            height: 100%; /* 화면 높이에 맞게 */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2rem;
+            text-align: center;
+            scroll-snap-align: start; /* 스크롤이 섹션의 시작 부분에 맞춰지도록 설정 */
+            box-sizing: border-box; /* 패딩과 테두리가 너비와 높이에 포함되도록 설정 */
+        }
+
+        /* .main 페이지에 배경 이미지 적용 */
+        .main {
+            background-image: url("https://github.com/user-attachments/assets/b8ce9f01-b241-4932-80dd-ab7df79253fa");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .page1 {
+            background-image: url("https://github.com/user-attachments/assets/6b344f28-2c37-4cf2-8705-ddcf79c2b5a6");
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            pading: 15px
+        }
+
+        /* page2와 page3의 배경을 흰색으로 변경 */
+        .page2, .page3 {
+            background-color: #ffffff; /* 흰색 배경 */
+        }
+
+        @keyframes cursor {
+            0% { border-right: 1px solid #fff; }
+            50% { border-right: 1px solid #000; }
+            100% { border-right: 1px solid #fff; }
+        }
+
+        /* 모바일 뷰에서 반응형 설정 */
+        @media (max-width: 768px) {
+            .wrap {
+                width: 100%;
+                height: 100%;
+                max-width: none;
+                max-height: none;
+                aspect-ratio: 9 / 16;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrap">
+
+        <!-- 연말 크리스마스 -->
+        <div class="main">
+
+        </div>
+
+        <!-- 1부 시상식 컨셉 -->
+        <div class="page1">
+ 
+        </div>
+
+        <!-- 2부 미운 우리 이모들 컨셉 -->
+        <div class="page2">
+        
+        </div>
+
+        <!-- 기타 -->
+        <div class="page3">
+         
+        </div>
+
+    </div>
+
+</body>
+</html>
