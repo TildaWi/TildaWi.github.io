@@ -4,168 +4,148 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Back to the 2012! </title>
-    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
-
+    <title>Back to the 2012!</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet"> <!-- 레트로 폰트 -->
     <style>
-        html, body {
-            height: 100%;
+        body {
             margin: 0;
             padding: 0;
-            overflow-x: hidden;
+            height: 100%;
+            background-color: #fffaf0; /* 연분홍 배경 */
+            font-family: 'Press Start 2P', cursive; /* 레트로 폰트 */
+            overflow: hidden;
         }
 
-        body {
-            width: 100%;
-            font-family: Arial, sans-serif;
-            position: relative;
-            background-color: #ffffff;
-        }
-        
-        .cherry_blossom {
+        .cherry-blossom {
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            z-index: 0;
+            top: -100px;
+            left: 50%;
+            width: 40px;
+            height: 40px;
+            background-image: url('cherry-blossom.png'); /* 벚꽃 이미지 */
+            background-size: cover;
+            animation: fall 10s linear infinite;
         }
-        
-        .cherry_blossom .petal {
-            position: absolute;
-            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
-            border-radius: 10% 50% 40% 50%;
-            z-index: 1;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-            pointer-events: none;
-            transform-style: preserve-3d;
-            transition: transform 1000ms linear;
-        }
-        
+
         @keyframes fall {
             0% {
-                top: 0;
+                transform: translate(-50%, 0) rotate(0deg);
                 opacity: 1;
             }
-        
-            80% {
-                opacity: 1;
-            }
-        
             100% {
-                top: 100%;
-                opacity: 0.2;
+                transform: translate(500px, 100vh) rotate(360deg);
+                opacity: 0.5;
             }
         }
 
-        /* 모바일 뷰에서 반응형 설정 */
-        @media (max-width: 768px) {
-            .wrap {
-                width: 100%;
-                height: 100%;
-                max-width: none;
-                max-height: none;
-                aspect-ratio: 9 / 16;
-            }
+        .loading-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
         }
 
+        .loading-text {
+            font-size: 24px;
+            color: #ff69b4;
+            margin-bottom: 20px;
+        }
+
+        .progress-bar {
+            position: relative;
+            width: 300px;
+            height: 20px;
+            background-color: #f0f0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .progress {
+            position: absolute;
+            height: 100%;
+            width: 0;
+            background-color: #ff69b4;
+            transition: width 5s linear;
+        }
+
+        .phone-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 700px;
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            display: none; /* 초기 숨김 */
+            overflow: hidden;
+        }
+
+        .app-icon {
+            display: inline-block;
+            width: 80px;
+            height: 80px;
+            margin: 15px;
+            background-color: #ffcccb;
+            border-radius: 15px;
+            text-align: center;
+            line-height: 80px;
+            font-size: 14px;
+            color: #fff;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
+    <!-- 벚꽃 효과 -->
+    <div class="cherry-blossom"></div>
 
-    <!-- 벚꽃 날리는 효과 -->
-    <div class="cherry_blossom"></div>
+    <!-- 로딩 화면 -->
+    <div class="loading-container">
+        <div class="loading-text">Back to the 2012, Loading...</div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
 
+    <!-- 스마트폰 잠금 화면 -->
+    <div class="phone-screen">
+        <div class="app-icon">앱 1</div>
+        <div class="app-icon">앱 2</div>
+        <div class="app-icon">앱 3</div>
+        <div class="app-icon">앱 4</div>
+    </div>
 
+    <!-- BGM -->
+    <audio id="bgm" autoplay loop>
+        <source src="https://soundcloud.com/some-audio-link.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        $(document).ready(function(){
+        // 벚꽃 효과 복제
+        for (let i = 0; i < 50; i++) {
+            const cherry = document.createElement('div');
+            cherry.classList.add('cherry-blossom');
+            cherry.style.left = Math.random() * 100 + 'vw';
+            cherry.style.animationDuration = Math.random() * 5 + 5 + 's'; // 다양한 낙하 속도
+            document.body.appendChild(cherry);
+        }
 
-            // 기본 값 설정
-            const defaults = {
-                speed: 5,
-                maxSize: 15,
-                minSize: 10,
-                newOn: 400
-            };
-            
-            // 벚꽃 영역 크기를 저장할 변수
-            var $wrap = $('.cherry_blossom');
-            let wrapH = $wrap.height();
-            let wrapW = $wrap.width();
-            
-            // 벚꽃 잎 생성
-            const $petal = $('<span class="petal"></span>');
-            
-            // 랜덤 회전 값을 생성하는 함수
-            const getRandomRotate = () => {
-                const rotateX = 360;
-                const rotateY = Math.random() * 60 - 30;
-                const rotateZ = Math.random() * 120 - 30;
-                const translateX = Math.random() * 10 - 5;
-                const translateY = Math.random() * 10 - 10;
-                const translateZ = Math.random() * 15;
-                return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
-            };
-            
-            // 무작위 흔들림 애니메이션 배열 생성
-            const randomSwayAnims = [...Array(10)].map(getRandomRotate);
-            
-            // 특정 요소에 흔들림 애니메이션 적용
-            const applySwayAnim = (element) => {
-                const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
-                element.css('transform', randomSway);
-                setTimeout(() => {
-                    applySwayAnim(element);
-                }, 1000);
-            };
-            
-            // 벚꽃 잎 생성 함수
-            const petalGen = () => {
-                setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
-            
-                const petal = $petal.clone();
-                const size = Math.floor(Math.random() * (defaults.maxSize - defaults.minSize + 1)) + defaults.minSize;
-                const startPosLeft = Math.random() * wrapW;
-                const fallTime = (wrapH * 0.1 + Math.random() * 5) / defaults.speed;
-                const horizontalOffset = Math.random() * 2 - 1;
-            
-                // 애니메이션 끝나면 제거
-                petal.on('animationend', () => {
-                    petal.remove();
-                }).css({
-                    width: size,
-                    height: size,
-                    left: startPosLeft,
-                    position: 'absolute',
-                    animation: `fall ${fallTime}s linear`
-                }).appendTo($wrap);
-            
-                // 위치 업데이트 함수
-                const updatePos = () => {
-                    petal.css('left', `+=${horizontalOffset}`);
-                    requestAnimationFrame(updatePos);
-                };
-            
-                updatePos();
-                applySwayAnim(petal);
-            };
-            
-            // 창 크기가 변경될 때 영역 크기 업데이트
-            $(window).resize(() => {
-                wrapH = $wrap.height();
-                wrapW = $wrap.width();
-            });
-            
-            // 로딩 완료 후 벚꽃 잎 생성 시작
-            $(window).on('load', () => {
-                requestAnimationFrame(petalGen);
-            });
+        // 로딩 화면
+        const progress = document.querySelector('.progress');
+        const phoneScreen = document.querySelector('.phone-screen');
+        setTimeout(() => {
+            progress.style.width = '100%';
+        }, 100);
 
-        
-        });
+        setTimeout(() => {
+            document.querySelector('.loading-container').style.display = 'none';
+            phoneScreen.style.display = 'block';
+        }, 5000); // 로딩 완료 후 스마트폰 화면 표시
     </script>
-
 </body>
 </html>
