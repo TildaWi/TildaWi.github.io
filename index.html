@@ -39,12 +39,13 @@
 
         /* 첫 번째, 두 번째 문장 */
         .first-sentence {
+            width: 100%;
             position: absolute;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 24px;
+            font-size: 28px;
             text-align: center;
             color: white;
             z-index: 1;
@@ -74,7 +75,7 @@
             width: 100%;
             height: 100%;
             overflow: hidden;
-            transform: translate(-50%, 50%);
+            transform: translate(-50%, 40%);
             display: flex;
             justify-content: center;
             align-items: center;
@@ -105,12 +106,13 @@
 
         /* 세 번째, 네 번째, 다섯 번째 문장 */
         .cattalk {
+            width: 100%;
             position: absolute;
-            bottom: calc(50% + 130px); /* 고양이 이미지 위로 70px */
+            bottom: calc(50% + 140px); /* 고양이 이미지 위로 130px */
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 15px;
+            font-size: 16px;
             text-align: center;
             color: white;
             z-index: 3;
@@ -160,8 +162,8 @@
             border: none;
             color: #ffffff;
             font-size: 16px;
-            padding: 5px;
-            border-radius: 10px;
+            padding: 3px;
+            border-radius: 5px;
         }
 
         .hidden {
