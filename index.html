@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌟송년회 초대장🌟</title>
+    <title> 과거로부터의 초대 </title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
-        alert("주의! 이어폰을 착용하거나 음소거를 설정해주세요!")
         $(document).ready(function(){
             const canvas = $('.snow')[0];
             const context = canvas.getContext('2d');
@@ -101,9 +100,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("https://github.com/user-attachments/assets/8e09a3ad-cc1e-4fd4-9535-0b22201b5f0f");
-            background-size: cover;  /* 배경 크기를 화면에 맞게 설정 */
-            background-position: center;  /* 배경을 중앙에 배치 */
             overflow: hidden;
             z-index: 0;  /* 배경 이미지를 맨 뒤로 설정 */
         }
@@ -111,28 +107,46 @@
         .snow { 
             width: 100%;
             height: 100%;
+            background: #141f3e;
         } 
         
-        .bear_wrap { 
-            position: absolute;
-            bottom: 10%; /* 화면 하단에서 20% 떨어지도록 설정 */
-            left: 50%;
-            transform: translateX(-50%); /* 수평 중앙 정렬 */
-            z-index: 2;  /* 산타곰이 배경 이미지 위에 보이도록 설정 */
+        .cat-container {
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              z-index: 2;  /* 고양이가 배경 이미지 위에 보이도록 설정 */
+        }
+            
+        #cat {
+              max-width: 250px;
+              width: 100%;
+              height: auto;
+              animation: scaleUp 3s ease-in-out forwards;
+              filter: drop-shadow(0 0 10px transparent);
         }
         
-        .baer { 
-            max-width: 1080px;  /* 이미지 가로 너비 최대 1080px */
-            width: 100%;  /* 반응형 이미지 */
-            height: auto;
+        @keyframes scaleUp {
+              0% {
+                transform: scale(0.2);
+                filter: drop-shadow(0 0 10px transparent);
+              }
+              100% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 20px #ffd700); /* 후광 네온 효과 */
+              }
         }
+
 
     </style>    
 </head>
 <body>
     <!-- 사운드 -->
     <audio autoplay loop muted style="display:none;">
-        <source src="https://raw.githubusercontent.com/TildaWi/TildaWi.github.io/main/snow-and-christmas-261290.mp3" type="audio/mp3">
+        <source src="" type="audio/mp3">
     </audio>
 
     <!-- 초대장 페이지 백그라운드 -->
@@ -140,9 +154,10 @@
         <canvas class="snow"></canvas>
     </div>
     
-    <!-- 산타곰 -->
-    <div class="bear_wrap">
-        <img class="baer" src="https://github.com/user-attachments/assets/57865773-ddaf-433a-a17c-1c309553b00b" alt="산타곰">
+    <!-- 고양이 -->
+    <div class="cat-container">
+      <img id="cat" src="/image/cat.png" alt="고양이">
     </div>
+
 </body>
 </html>
