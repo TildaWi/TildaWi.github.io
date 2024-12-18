@@ -44,7 +44,7 @@
             left: 50%;
             transform: translate(-50%, -50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 28px;
+            font-size: 24px;
             text-align: center;
             color: white;
             z-index: 1;
@@ -106,11 +106,11 @@
         /* 세 번째, 네 번째, 다섯 번째 문장 */
         .cattalk {
             position: absolute;
-            bottom: calc(50% + 90px); /* 고양이 이미지 위로 70px */
+            bottom: calc(50% + 130px); /* 고양이 이미지 위로 70px */
             left: 50%;
             transform: translateX(-50%);
             font-family: 'Courier New', Courier, monospace;
-            font-size: 16px;
+            font-size: 15px;
             text-align: center;
             color: white;
             z-index: 3;
@@ -152,6 +152,7 @@
             color: #ffffff;
             font-size: 16px;
             padding: 5px;
+            border-radius: 10px;
         }
         
         #reject-button {
@@ -160,6 +161,7 @@
             color: #ffffff;
             font-size: 16px;
             padding: 5px;
+            border-radius: 10px;
         }
 
         .hidden {
@@ -200,25 +202,27 @@
 
     <!-- 세 번째 문장 -->
     <div class="cattalk" style="animation-delay: 21s;">
-        <p>안녕하세요, 혹시 (주)오합지졸에서 발송한 편지를 찾으러 오셨나요?</p>
+        <p>안녕하세요, </p>
+        <p>혹시 (주)오합지졸에서 발송한 편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
     <div class="cattalk" style="animation-delay: 26s;">
-        <p>잘 오셨네요. 마침 과거로부터의 편지가 도착했는데...</p>
+        <p>잘 오셨네요.</p> 
+        <p>마침 과거로부터의 편지가 도착했는데...</p>
     </div>
 
     <!-- 다섯 번째 문장 -->
     <div class="cattalk" style="animation-delay: 31s;">
-        <p>편지를 받는 건 본인 자유... 희망하신다면 저를 클릭해주세요.</p>
+        <p>편지를 받는 건 본인 자유... 
+        <p>희망하신다면 저를 클릭해주세요.</p>
     </div>
 
     <!-- 모달창 -->
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <h1>※ (주) 오합지졸 ※</h1>
-            <p>이 편지는 12년 전 과거로부터</p>
-            <p>전달된 행운의 편지입니다.</p>
+            <p>이 편지는 12년 전 과거로부터 전달된 행운의 편지입니다.</p>
             <button id="accept-button">수락하기</button>
             <button id="reject-button">거절은 거절.</button>
         </div>
