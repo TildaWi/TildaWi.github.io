@@ -7,6 +7,31 @@
     <title> 과거로부터의 초대 </title>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script>
+        // 타이핑 효과
+        const text = "과거로부터 온 행운의 편지입니다. 과거 여행을 수락하시겠습니까?";
+        let i = 0;
+    
+        function typeEffect() {
+          if (i < text.length) {
+            $('#typing').text(function(_, currentText) {
+              return currentText + text.charAt(i);
+            });
+            i++;
+            setTimeout(typeEffect, 100); // 타이핑 속도 조절
+          }
+        }
+    
+        // 고양이를 클릭하면 모달 열기
+        $('#cat').on('click', function() {
+          $('#modal').removeClass('hidden');
+          typeEffect(); // 타이핑 효과 시작
+        });
+    
+        // "수락하기" 버튼 클릭 시 새창으로 이동
+        $('#accept-button').on('click', function() {
+          window.open('past.html', '_blank');
+        });
+        
         $(document).ready(function(){
             const canvas = $('.snow')[0];
             const context = canvas.getContext('2d');
@@ -107,7 +132,7 @@
         .snow { 
             width: 100%;
             height: 100%;
-            background: #141f3e;
+            background: #394449;
         } 
         
         .cat-container {
@@ -125,7 +150,7 @@
               max-width: 250px;
               width: 100%;
               height: auto;
-              animation: scaleUp 3s ease-in-out forwards;
+              animation: scaleUp 5s ease-in-out forwards;
               filter: drop-shadow(0 0 10px transparent);
         }
         
@@ -139,6 +164,49 @@
                 filter: drop-shadow(0 0 20px #ffd700); /* 후광 네온 효과 */
               }
         }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            }
+            
+            .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            animation: fadeIn 0.5s;
+        }
+        
+        .hidden {
+            display: none;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+    #typing {
+        font-family: 'Courier New', Courier, monospace;
+        font-size: 18px;
+        color: white;
+        white-space: pre-wrap;
+    }
+
+
 
 
     </style>    
@@ -158,6 +226,17 @@
     <div class="cat-container">
       <img id="cat" src="/image/cat.png" alt="고양이">
     </div>
+
+    <!-- Modal Container -->
+    <div id="modal" class="modal hidden">
+        <div class="modal-content">
+            <p id="letter">"과거로부터 온 행운의 편지입니다. 과거 여행을 수락하시겠습니까?"</p>
+            <button id="accept-button">수락하기</button>
+        </div>
+    </div>
+
+    <p id="typing"></p>
+
 
 </body>
 </html>
