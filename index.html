@@ -148,11 +148,29 @@
         
         .modal-content {
             background: white;
-            padding: 20px;
+            padding: 10px;
             border-radius: 10px;
             text-align: center;
-            animation: fadeIn 0.5s;
+            animation: fadeIn 0.7s;
+            opacity: 0.5;
         }
+
+        .modal-content h1 {
+            font-size: 20px;
+        }
+
+        .accept-button {
+            background-color: pink;
+            font-color: #ffffff;
+            font-size: 16px;
+        }
+        
+        .reject-button {
+            background-color: black;
+            font-color: red;
+            font-size: 16px;
+        }
+      
         .hidden {
             display: none; /* hidden 클래스 스타일 정의 */
         }
@@ -213,11 +231,10 @@
         let canvasWidth = $('.snow_wrap').width();
         let canvasHeight = $('.snow_wrap').height();
         let snowParticles = [];
-        let lastDeviceType = window.innerWidth < 768 ? 'mobile' : 'desktop';
 
         function createParticles() {
             snowParticles = [];
-            const particleCount = lastDeviceType === 'mobile' ? 40 : 100;
+            const particleCount = window.innerWidth < 768 ? 40 : 100;
             for (let i = 0; i < particleCount; i++) {
                 snowParticles.push(new createParticle());
             }
@@ -287,10 +304,13 @@
             if (currentLine < lines.length) {
                 typeLine(lines[currentLine], displayNextLine);
                 currentLine++;
-            } else {
-                setTimeout(() => $('#modal').removeClass('hidden'), 1000);
             }
         }
+
+        // 고양이 클릭 시 모달 열기
+        $('#cat').on('click', function () {
+            $('#modal').removeClass('hidden');
+        });
 
         // 고양이 이미지 로드 완료 후 실행
         $('#cat').on('load', function () {
@@ -298,10 +318,11 @@
             setTimeout(() => {
                 $('.cat-talk').fadeIn(1000, displayNextLine);
             }, 5000);
-        }).attr('src', '/image/cat.png');
+        });
 
-        // 모달 숨기기 초기화
+        // 초기 설정
         $('#modal').addClass('hidden');
+        $('.cat-talk').hide();
     });
     
 </script>
