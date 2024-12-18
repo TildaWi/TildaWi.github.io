@@ -50,6 +50,7 @@
             z-index: 1;
             opacity: 0;
             animation: fadeInOut 5s forwards;
+            filter: drop-shadow(0 0 10px white);
         }
 
         .second-sentence {
@@ -62,7 +63,7 @@
             }
             20%, 80% {
                 opacity: 1;
-                filter: drop-shadow(0 0 10px #fff);
+                filter: drop-shadow(0 0 10px white);
             }
             100% {
                 opacity: 0;
@@ -72,15 +73,15 @@
         /*고양이 이미지 효과*/
         .cat-container {
             position: absolute;
-            top: 50%;
+            bottom: 10%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             display: flex;
             justify-content: center;
             align-items: center;
             z-index: 2;
-            opacity: 0; /* 초기 상태 */
-            animation: scaleUp 5s 10s forwards; /* 10초 후 애니메이션 시작 */
+            opacity: 0;
+            animation: scaleUp 5s 10s forwards;
         }
         
         #cat {
@@ -101,35 +102,6 @@
                 filter: drop-shadow(0 0 20px #ffd700);
                 opacity: 1;
             }
-        }
-
-        /*고양이 말풍선 효과*/
-        .cat-talk {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 255, 255, 0.9);
-            padding: 15px 20px;
-            border-radius: 15px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
-            max-width: 90%;
-            z-index: 5;
-            font-family: 'Courier New', Courier, monospace;
-            display: none; /* 초기 숨김 */
-        }
-        
-        #talk-lines {
-          margin: 0;
-          padding: 0;
-          list-style-type: none;
-        }
-        
-        #talk-lines li {
-          display: none;
-          font-size: 16px;
-          line-height: 1.5;
-          color: #333;
         }
 
         /*모달창 효과*/
@@ -206,13 +178,6 @@
     <div class="cat-container">
         <img id="cat" src="/image/cat.png" alt="고양이">
     </div>    
-    
-    <!-- 고양이 말풍선 -->
-    <div class="cat-talk">
-        <ul id="talk-lines">
-        <!-- 타이핑될 문장들이 순차적으로 표시됩니다 -->
-        </ul>
-    </div>
 
     <!-- 모달창 컨테이너 -->
     <div id="modal" class="modal hidden">
@@ -275,58 +240,15 @@
         createParticles();
         setInterval(draw, 33);
 
-       // 고양이 말풍선과 타이핑 효과
-        const lines = [
-            "안녕하세요, 혹시 (주)오합지졸에서 발송한 행운의 편지를 받으러 오셨나요?",
-            "마침, 과거로부터 편지가 오늘 도착했는데...",
-            "편지를 받아보는 건 자유라 본인이 선택하시면 됩니다."
-        ];
-        let currentLine = 0;
-
-        function typeLine(line, callback) {
-            let charIndex = 0;
-            const target = $('<li></li>');
-            $('#talk-lines').append(target);
-
-            function typeChar() {
-                if (charIndex < line.length) {
-                    target.append(line[charIndex]);
-                    charIndex++;
-                    setTimeout(typeChar, 50);
-                } else if (callback) {
-                    setTimeout(callback, 1000);
-                }
-            }
-            typeChar();
-        }
-
-        function displayNextLine() {
-            if (currentLine < lines.length) {
-                typeLine(lines[currentLine], displayNextLine);
-                currentLine++;
-            }
-        }
-
         // 고양이 클릭 시 모달 열기
         $('#cat').on('click', function () {
             $('#modal').removeClass('hidden');
         });
 
-        // 고양이 이미지 로드 완료 후 실행
-        $('#cat').on('load', function () {
-            $('.cat-container').css('opacity', '1');
-            setTimeout(() => {
-                $('.cat-talk').fadeIn(1000, displayNextLine);
-            }, 5000);
-        });
-
         // 초기 설정
         $('#modal').addClass('hidden');
-        $('.cat-talk').hide();
     });
-    
 </script>
-
 
 </body>
 </html>
