@@ -38,7 +38,7 @@
         } 
 
         /*사용자 타이핑 효과*/
-        .first-sentence, .second-sentence {
+        .first-sentence {
             position: absolute;
             top: 50%;
             left: 50%;
@@ -54,7 +54,18 @@
         }
 
         .second-sentence {
-            animation-delay: 5s;
+            position: absolute;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 20px;
+            text-align: center;
+            color: white;
+            z-index: 1;
+            opacity: 0;
+            animation: fadeInOut 5s forwards;
+            filter: drop-shadow(0 0 10px white);
         }
 
         @keyframes fadeInOut {
@@ -163,33 +174,33 @@
     </div>
 
     <!-- 첫 번째 문장 -->
-    <div class="first-sentence">
+    <div class="first-sentence" style="animation-delay: 0s;">
         <p>지금은 2024년,</p> 
         <p>추운겨울...</p>
         <p>어디 재밌는 일 좀 뭐 없나....</p>
     </div>
 
     <!-- 두 번째 문장 -->
-    <div class="second-sentence">
+    <div class="first-sentence" style="animation-delay: 5s;">
         <p>저게 뭐지?</p> 
         <p>뭔가 다가오는데...</p>
         <p>고양이? 고양이가 오고 있는 건가....?</p>
     </div>
 
     <!-- 세 번째 문장 -->
-    <div class="first-sentence">
+    <div class="first-sentence" style="animation-delay: 12s;">
         <p>안녕하세요,</p>
         <p>(주)오합지졸에서 보낸 편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
-    <div class="first-sentence">
+    <div class="first-sentence" style="animation-delay: 19s;">
       <p>잘 오셨네요 마침</p>
       <p>과거로부터의 편지가 도착했는데...</p>
     </div>
 
     <!-- 다섯 번째 문장 -->
-    <div class="first-sentence">
+    <div class="first-sentence" style="animation-delay: 26s;">
       <p>편지를 받는 건 본인 자유...</p>
       <p>받길 희망하신다면 저를 클릭해주세요</p>
     </div>
@@ -263,6 +274,11 @@
         // 고양이 클릭 시 모달 열기
         $('#cat').on('click', function () {
             $('#modal').removeClass('hidden');
+        });
+
+        // 수락하기 버튼 클릭 시 새 창 열기
+        $('#accept-button').on('click', function () {
+            window.open('past.html', '_blank');
         });
 
         // 초기 설정
