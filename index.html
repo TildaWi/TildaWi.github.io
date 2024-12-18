@@ -175,8 +175,8 @@
 
     <!-- 첫 번째 문장 -->
     <div class="first-sentence">
-        <p>지금은 2024년, 추운겨울</p>
-        <p>어디 재밌는 일 좀 뭐 없나</p>
+        <p>지금은 2024년, 추운겨울...</p>
+        <p>어디 재밌는 일 좀 뭐 없나....</p>
     </div>
 
     <!-- 두 번째 문장 -->
@@ -280,7 +280,7 @@
         createParticles();
         setInterval(draw, 33);
 
-        // 고양이 이미지 로드 확인
+        //고양이 말풍선 효과
         const lines = [
             "안녕하세요, 혹시 (주)오합지졸에서 발송한 행운의 편지를 받으러 오셨나요?",
             "마침, 과거로부터 편지가 오늘 도착했는데...",
@@ -288,6 +288,7 @@
         ];
         let currentLine = 0;
     
+        // 한 줄씩 타이핑
         function typeLine(line, callback) {
             let charIndex = 0;
             const target = $('<li></li>');
@@ -307,6 +308,7 @@
             typeChar();
         }
     
+        // 다음 문장 출력
         function displayNextLine() {
             if (currentLine < lines.length) {
                 typeLine(lines[currentLine], displayNextLine);
@@ -314,27 +316,28 @@
             } else {
                 console.log("모든 문장 출력 완료");
                 setTimeout(() => {
-                    $('#modal').removeClass('hidden');
-                }, 1000); // 모든 문장 출력 후 모달 열기
+                    $('#modal').removeClass('hidden'); // 모달 표시
+                }, 1000);
             }
         }
     
-        // 고양이 이미지 애니메이션 실행
+        // 고양이 이미지 로드 완료 후 실행
         $('#cat').on('load', function () {
             console.log("고양이 이미지 로드 완료");
             $('.cat-container').css('opacity', '1'); // 고양이 이미지 표시
             setTimeout(() => {
-                $('.cat-talk').fadeIn(1000, displayNextLine); // 말풍선 애니메이션 시작
+                $('.cat-talk').fadeIn(1000, displayNextLine); // 말풍선 표시 후 타이핑 시작
             }, 5000); // 고양이 이미지 등장 후 5초 대기
         });
     
         // 버튼 클릭 이벤트
         $('#accept-button').on('click', function () {
-            window.open('past.html', '_blank');
+            window.open('past.html', '_blank'); // 새 창 열기
         });
     
         // 초기 설정
         $('#modal').addClass('hidden'); // 모달 숨기기
+        $('.cat-talk').hide(); // 말풍선 초기 숨김
     
 </script>
 
