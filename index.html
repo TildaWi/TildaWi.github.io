@@ -142,11 +142,16 @@
             opacity: 0.9;
         }
 
+        .modal-content h1 {
+            font-size: 22px;
+        }
+
         #accept-button {
             background-color: black;
             border: none;
             color: #ffffff;
             font-size: 16px;
+            padding: 5px;
         }
         
         #reject-button {
@@ -154,6 +159,7 @@
             border: none;
             color: #ffffff;
             font-size: 16px;
+            padding: 5px;
         }
 
         .hidden {
@@ -177,12 +183,14 @@
 
     <!-- 첫 번째 문장 -->
     <div class="first-sentence" style="animation-delay: 2s;">
-        <p>지금은 2024년, 추운 겨울 어느 날...</p>
+        <p>지금은 2024년,</p> 
+        <p>추운 겨울 어느 날...</p>
     </div>
 
     <!-- 두 번째 문장 -->
     <div class="first-sentence" style="animation-delay: 7s;">
-        <p>저게 뭐지? 뭔가 다가오는데...</p>
+        <p>저게 뭐지?</p>
+        <p>뭔가 다가오는데...</p>
     </div>
 
     <!-- 고양이 이미지 -->
@@ -191,17 +199,17 @@
     </div>
 
     <!-- 세 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 24s;">
+    <div class="cattalk" style="animation-delay: 21s;">
         <p>안녕하세요, 혹시 (주)오합지졸에서 발송한 편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 29s;">
+    <div class="cattalk" style="animation-delay: 26s;">
         <p>잘 오셨네요. 마침 과거로부터의 편지가 도착했는데...</p>
     </div>
 
     <!-- 다섯 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 34s;">
+    <div class="cattalk" style="animation-delay: 31s;">
         <p>편지를 받는 건 본인 자유... 희망하신다면 저를 클릭해주세요.</p>
     </div>
 
@@ -209,7 +217,8 @@
     <div id="modal" class="modal hidden">
         <div class="modal-content">
             <h1>※ (주) 오합지졸 ※</h1>
-            <p>이 편지는 12년 전 과거로부터 온 행운의 편지입니다.</p>
+            <p>이 편지는 12년 전 과거로부터</p>
+            <p>전달된 행운의 편지입니다.</p>
             <button id="accept-button">수락하기</button>
             <button id="reject-button">거절은 거절.</button>
         </div>
