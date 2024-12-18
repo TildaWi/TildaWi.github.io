@@ -11,33 +11,51 @@
             margin: 0;
             padding: 0;
             height: 100%;
-            background-color: #fffaf0; /* 연분홍 배경 */
+            background-color: #ffffff; /* 메인컬러는 연분홍 과 흰색 */
             font-family: 'Press Start 2P', cursive; /* 레트로 폰트 */
             overflow: hidden;
         }
 
-        .cherry-blossom {
-            position: absolute;
-            top: -100px;
-            left: 50%;
-            width: 40px;
-            height: 40px;
-            background-image: url('cherry-blossom.png'); /* 벚꽃 이미지 */
+        /*벚꽃 흩날리는 효과*/
+        .cherry_blossom {
+            overflow: hidden;
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background: url('sakura.png') center center no-repeat;
             background-size: cover;
-            animation: fall 10s linear infinite;
+            perspective: 1000px;
         }
-
+        
+        .cherry_blossom .petal {
+            position: absolute;
+            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
+            border-radius: 10% 50% 40% 50%;
+            z-index: 1;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 1000ms linear;
+        }
+        
         @keyframes fall {
             0% {
-                transform: translate(-50%, 0) rotate(0deg);
+                top: 0;
                 opacity: 1;
             }
+        
+            80% {
+                opacity: 1;
+            }
+        
             100% {
-                transform: translate(500px, 100vh) rotate(360deg);
-                opacity: 0.5;
+                top: 100%;
+                opacity: 0.2;
             }
         }
 
+
+        /*로딩 프로그래스바 효과*/
         .loading-container {
             position: absolute;
             top: 50%;
@@ -70,6 +88,7 @@
             transition: width 5s linear;
         }
 
+        /*잠금 해제 후 스마트폰 화면 효과*/
         .phone-screen {
             position: absolute;
             top: 50%;
@@ -98,6 +117,7 @@
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
             cursor: pointer;
         }
+        
     </style>
 </head>
 <body>
@@ -106,7 +126,10 @@
 
     <!-- 로딩 화면 -->
     <div class="loading-container">
-        <div class="loading-text">Back to the 2012, Loading...</div>
+        <div class="loading-text">
+            <p class="">Back to the 2012, </p>
+            <p>Loading... </p>
+        </div> 
         <div class="progress-bar">
             <div class="progress"></div>
         </div>
