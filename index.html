@@ -48,9 +48,9 @@
         .first-sentence {
             width: 100%;
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            transform: translate(-50%, 50%);
             font-family: 'IyagiGGC';
             font-size: 26px;
             text-align: center;
@@ -81,7 +81,6 @@
             left: 0;
             width: 100%;
             height: 100%;
-            padding-top: 80px;
             overflow: hidden;
             transform: translate(-50%, 50%);
             display: flex;
@@ -96,6 +95,7 @@
             max-width: 180px;
             width: 100%;
             height: auto;
+            margin-top: 70px;
             filter: drop-shadow(0 0 10px transparent);
         }
 
@@ -125,7 +125,7 @@
             color: white;
             z-index: 3;
             opacity: 0;
-            animation: fadeInOut 3s forwards;
+            animation: fadeInOut 5s forwards;
             filter: drop-shadow(0 0 10px white);
         }
 
@@ -196,7 +196,7 @@
     </div>
 
     <!-- 두 번째 문장 -->
-    <div class="first-sentence" style="animation-delay: 7s;">
+    <div class="first-sentence" style="animation-delay: 4s;">
         <p>10년 이라는 시간도</p>
         <p>이렇게 가버리는 건가</p>
     </div>
@@ -207,14 +207,14 @@
     </div>
 
     <!-- 세 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 21s;">
+    <div class="cattalk" style="animation-delay: 18s;">
         <p>안녕하세요</p>
         <p>혹시 (주)오합지졸에서 발송한</p>
         <p>편지를 찾으러 오셨나요?</p>
     </div>
 
     <!-- 네 번째 문장 -->
-    <div class="cattalk" style="animation-delay: 26s;">
+    <div class="cattalk" style="animation-delay: 23s;">
         <p>잘 오셨네요.</p> 
         <p>마침 과거로부터의</p>
         <p>편지가 도착했는데...</p>
@@ -222,8 +222,8 @@
 
     <!-- 다섯 번째 문장 -->
     <div class="cattalk" style="animation-delay: 31s;">
-        <p>편지를 받는 건 본인 자유...</p>
-        <p>희망하신다면 저를 클릭해주세요.</p>
+        <p>수락하는 건 본인 자유...</p>
+        <p>편지를 받으실려면 저를 클릭해주세요.</p>
     </div>
 
     <!-- 모달창 -->
