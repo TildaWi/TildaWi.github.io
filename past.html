@@ -8,200 +8,180 @@
 <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 <style>
-    @font-face {
-      font-family: 'IyagiGGC';
-      src: url('https://cdn.jsdelivr.net/gh/JuwanPark/IyagiGGC@latest/IyagiGGC.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-    }
-    * { 
-        margin: 0; 
-        padding: 0; 
-        font-family: 'Noto Sans KR', sans-serif; 
-        box-sizing: border-box; 
-    }   
-    
-    ul, li { 
-        list-style: none;
-    }
-    
-    body {
-        overflow: auto;
-    }
-    
-    .wrap {
-        position: relative;
-        width: 100%;
-        max-width: 840px;
-        height: 100%;
-        text-align: center;
-        background: linear-gradient(to bottom, #ffb6c1, #ffffff);
-    }
-    
-    .cherry_blossom{
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 100%;
-        height: 100%;
-        z-index: 1;
-        background-color: #000000;
-        opacity: 0.5;
-    }
-        
-    .con-box {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: 2;
-        scroll-snap-type: y mandatory;
-        overflow-y: scroll;
-    }
+        @font-face {
+            font-family: 'IyagiGGC';
+            src: url('https://cdn.jsdelivr.net/gh/JuwanPark/IyagiGGC@latest/IyagiGGC.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            font-family: 'IyagiGGC';
+            font-color: #ffffff;
+            overflow: hidden;
+        }
 
-    .container {
-        width: 100%;
-        height: 100vh;
-        max-width: 840px;
-        padding-bottom: 30px;
-        display: flex;
-        justify-content: center;
-        align-items: center;  /* 중앙 정렬 */
-        scroll-snap-align: start;
-        position: relative;
-    }
+        #main-container {
+            height: 100%;
+            scroll-snap-type: y mandatory;
+            overflow-y: scroll;
+        }
 
-    /* 이미지 크기 조정 */
-    img {
-        max-width: 100%;
-        height: auto; 
-        object-fit: contain;
-    }
+        .section {
+            height: 100vh;
+            scroll-snap-align: start;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
 
-    .scroll-down {
-        position: absolute;
-        bottom: 20px;
-        left: 50%;
-        transform: translateX(-50%);
-        cursor: pointer;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+        .section img {
+            max-width: 100%;
+            width: 100%; /* Ensure the image scales correctly on mobile */
+            height: auto;
+            object-fit: contain;
+            display: block;
+            margin: 0 auto;
+        }
 
-    .scroll-down p {
-        margin: 0;
-        font-size: 14px;
-    }
+        .scroll-down {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-    .triangle {
-        width: 0;
-        height: 0;
-        border-left: 10px solid transparent;
-        border-right: 10px solid transparent;
-        border-top: 15px solid #000;
-        margin-top: 5px;
-    }
-</style>
+        .scroll-down p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .triangle {
+            width: 0;
+            height: 0;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 15px solid #000;
+            margin-top: 5px;
+        }
+
+        .footer {
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f0f0f0;
+            font-size: 20px;
+        }
+    </style>
 </head>
 <body>
-    <div class="wrap">
-        <div class="cherry_blossom"></div>
-        <div class="con-box">
-            <div class="container main">
-                <img src="/image/main_bg.png" alt="Main Background">
-                <div class="scroll-down" onclick="scrollToNextSection(1)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+    <div id="main-container">
+        <section class="section">
+            <img src="/image/main_bg.png" alt="Main Background">
+            <h1>응답하라</h1>
+            <p>2012</p>
+            <div class="scroll-down" onclick="scrollToNextSection(1)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page1">
-                <img src="/image/page_01.png" alt="Page 01">
-                <div class="scroll-down" onclick="scrollToNextSection(2)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+        <section class="section">
+            <img src="/image/page_01.png" alt="Page 01">
+            <div class="scroll-down" onclick="scrollToNextSection(2)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page2">
-                <img src="/image/page_02.png" alt="Page 02">
-                <div class="scroll-down" onclick="scrollToNextSection(3)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+        <section class="section">
+        <img src="/image/page_02.png" alt="Page 02">
+            <div class="scroll-down" onclick="scrollToNextSection(3)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page3">
-                <img src="/image/page_03.png" alt="Page 03">
-                <div class="scroll-down" onclick="scrollToNextSection(4)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+        <section class="section">
+            <img src="/image/page_03.png" alt="Page 03">
+            <div class="scroll-down" onclick="scrollToNextSection(4)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page4">
-                <img src="/image/page_04.png" alt="Page 04">
-                <div class="scroll-down" onclick="scrollToNextSection(5)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_04.png" alt="Page 04">
+            <div class="scroll-down" onclick="scrollToNextSection(5)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page5">
-                <img src="/image/page_05.png" alt="Page 05">
-                <div class="scroll-down" onclick="scrollToNextSection(6)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_05.png" alt="Page 05">
+            <div class="scroll-down" onclick="scrollToNextSection(6)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page6">
-                <img src="/image/page_06.png" alt="Page 06">
-                <div class="scroll-down" onclick="scrollToNextSection(7)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_06.png" alt="Page 06">
+            <div class="scroll-down" onclick="scrollToNextSection(7)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page7">
-                <img src="/image/page_07.png" alt="Page 07">
-                <div class="scroll-down" onclick="scrollToNextSection(8)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_07.gif" alt="Page 07">
+            <div class="scroll-down" onclick="scrollToNextSection(8)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page8">
-                <img src="/image/page_08.png" alt="Page 08">
-                <div class="scroll-down" onclick="scrollToNextSection(9)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_08.png" alt="Page 08">
+            <div class="scroll-down" onclick="scrollToNextSection(9)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page9">
-                <img src="/image/page_09.png" alt="Page 09">
-                <div class="scroll-down" onclick="scrollToNextSection(10)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+                <section class="section">
+            <img src="/image/page_09.png" alt="Page 09">
+            <div class="scroll-down" onclick="scrollToNextSection(10)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page10">
-                <img src="/image/page_10.png" alt="Page 10">
-                <div class="scroll-down" onclick="scrollToNextSection(11)">
-                    <p>Scroll Down</p>
-                    <div class="triangle"></div>
-                </div>
+        </section>
+        <section class="section">
+            <img src="/image/page_10.png" alt="Page 10">
+            <div class="scroll-down" onclick="scrollToNextSection(11)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="container page11">
-                <img src="/image/page_11.png" alt="Page 11">
+        </section>
+        <section class="section">
+            <img src="/image/page_11.png" alt="Page 11">
+                <div class="scroll-down" onclick="scrollToNextSection(12)">
+                <p>여기를 눌러줘!!</p>
+                <div class="triangle"></div>
             </div>
-            <div class="footer">
-            </div>
-        </div>
+        </section>
+        <section class="section">
+            <img src="/image/page_12.png" alt="Page 12">
+        </section>
     </div>
 
-<script>
-    function scrollToNextSection(index) {
-        const sections = document.querySelectorAll('.container');
-        if (index < sections.length) {
-            sections[index].scrollIntoView({ behavior: 'smooth' });
+    <script>
+        function scrollToNextSection(index) {
+            const sections = document.querySelectorAll('.section');
+            if (index < sections.length) {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
+            }
         }
-    }
-</script>
+    </script>
 </body>
 </html>
