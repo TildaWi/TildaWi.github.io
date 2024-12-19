@@ -91,55 +91,30 @@
 
         .leaf {
             position: absolute;
+            width: 20px;
+            height: 20px;
             background: linear-gradient(-45deg, #42b02c 0%, #57b045 40%, #86d676 80%);
-            border-radius: 10% 50% 40% 50%;
+            border-radius: 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 2;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
             pointer-events: none;
-            transform-style: preserve-3d;
-            transition: transform 1000ms linear;
+            animation: fall linear infinite;
         }
 
         @keyframes fall {
-              0% {
-                  top: 0;
-                  opacity: 1;
-              }
-          
-              80% {
-                  opacity: 1;
-              }
-          
-              100% {
-                  top: 100%;
-                  opacity: 0.2;
-              }
-          }
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
 
-        .section h1 {
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            margin: 0;
-            font-size: 32px;
-            color: white;
-        }
+            80% {
+                opacity: 1;
+            }
 
-        .section p {
-            position: absolute;
-            z-index: 1;
-            width: 100%;
-            top: calc(50% + 25px);
-            left: 50%;
-            transform: translateX(-50%);
-            text-align: center;
-            margin: 0;
-            font-size: 28px;
-            color: white;
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
         }
 </style>
 </head>
