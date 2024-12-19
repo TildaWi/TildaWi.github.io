@@ -30,13 +30,20 @@
     }
     .wrap {
         position: relative;
-        width: 840px;
+        width: 100%;
+        max-width: 840px;
         height: 100%;
+        text-align: center;
     }
         
-    .container {
-        width: 100%;
-        height: 600px;
+    .con-box {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 780px;
+        height: 100%;
+        max-height: 960px;
     }
     .container:nth-child(1){background-color: green;}
     .container:nth-child(2){background-color: orange;}
