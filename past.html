@@ -19,11 +19,18 @@
         padding: 0; 
         font-family: 'Noto Sans KR', sans-serif; 
         box-sizing: border-box; 
-    }      
+    }   
+    
+    ul, li { 
+        list-style: none;
+    }
+    
     body {
         position: relative; 
         width: 100%;
         height: 100%;
+        background: linear-gradient(to bottom, #ffb6c1, #ffffff);
+        overflow-x: hidden;
     }
 
     .cherry_blossom { 
@@ -31,8 +38,10 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%,50%);
-        width: 600px;
-        height: 600px;
+        width: 100%;
+        height: 100%;
+        max-width: 1080px;
+        max-height: 1920px;
         z-index: 10;
         background-color: red;
     } 
@@ -50,18 +59,16 @@
         80% { opacity: 1; } 
         100% { top: 100%; opacity: 0.2; } 
     }
-    
-    ul, li { 
-        list-style: none;
-    }
         
     .wrap {
         position: absolute;
         top: 50%;
         left: 50%;
         transform: translate(-50%,50%);
-        width: 600px;
-        height: 600px;
+        width: 100%;
+        height: 100%;
+        max-width: 1080px;
+        max-height: 1920px;
         z-index: 1;
         transition: 0.5s;
     }
