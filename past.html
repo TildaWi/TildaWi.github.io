@@ -27,6 +27,7 @@
             height: 100%;
             scroll-snap-type: y mandatory;
             overflow-y: scroll;
+            position: relative;
         }
 
         .section {
@@ -61,8 +62,9 @@
 
         .scroll-down p {
             margin: 0;
-            font-size: 14px;
-            color: white;
+            font-size: 16px;
+            text-align: center;
+            color: black;
         }
 
         .triangle {
@@ -70,9 +72,9 @@
             height: 0;
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-top: 15px solid #000;
+            border-top: 15px solid black;
             margin-top: 5px;
-            box-shadow: 0 0 10px #000;
+            box-shadow: 0 0 10px gray;
         }
 
         @keyframes bounce {
@@ -84,31 +86,55 @@
             }
         }
 
-        .footer {
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #f0f0f0;
-            font-size: 20px;
+        .leaf {
+            position: absolute;
+            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
+            border-radius: 10% 50% 40% 50%;
+            z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 1000ms linear;
         }
 
-        .section h1, .section p {
+        @keyframes fall {
+              0% {
+                  top: 0;
+                  opacity: 1;
+              }
+          
+              80% {
+                  opacity: 1;
+              }
+          
+              100% {
+                  top: 100%;
+                  opacity: 0.2;
+              }
+          }
+
+        .section h1 {
             position: absolute;
+            width: 100%;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
             text-align: center;
             margin: 0;
+            font-size: 28px;
             color: white;
         }
 
-        .section h1 {
-            font-size: 3rem;
-        }
-
         .section p {
-            font-size: 1.5rem;
+            position: absolute;
+            width: 100%;
+            top: calc(50% + 50px);
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            margin: 0;
+            font-size: 24px;
+            color: white;
         }
 </style>
 </head>
@@ -144,42 +170,42 @@
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_04.png" alt="Page 04">
             <div class="scroll-down" onclick="scrollToNextSection(5)">
                 <p>여기를 눌러줘!!</p>
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_05.png" alt="Page 05">
             <div class="scroll-down" onclick="scrollToNextSection(6)">
                 <p>여기를 눌러줘!!</p>
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_06.png" alt="Page 06">
             <div class="scroll-down" onclick="scrollToNextSection(7)">
                 <p>여기를 눌러줘!!</p>
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_07.gif" alt="Page 07">
             <div class="scroll-down" onclick="scrollToNextSection(8)">
                 <p>여기를 눌러줘!!</p>
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_08.png" alt="Page 08">
             <div class="scroll-down" onclick="scrollToNextSection(9)">
                 <p>여기를 눌러줘!!</p>
                 <div class="triangle"></div>
             </div>
         </section>
-                <section class="section">
+        <section class="section">
             <img src="/image/page_09.png" alt="Page 09">
             <div class="scroll-down" onclick="scrollToNextSection(10)">
                 <p>여기를 눌러줘!!</p>
@@ -212,6 +238,21 @@
                 sections[index].scrollIntoView({ behavior: 'smooth' });
             }
         }
+
+        // Generate leaf elements
+        function generateLeaves() {
+            const mainContainer = document.getElementById('main-container');
+            for (let i = 0; i < 30; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = Math.random() * 3 + 2 + 's';
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                mainContainer.appendChild(leaf);
+            }
+        }
+
+        generateLeaves();
     </script>
 </body>
 </html>
