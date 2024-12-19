@@ -19,7 +19,7 @@
             padding: 0;
             height: 100%;
             font-family: 'IyagiGGC';
-            color: #ffffff;
+            color: #000000;
             overflow: hidden;
         }
 
@@ -99,7 +99,7 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 1;
             pointer-events: none;
-            animation: fall 15s linear infinite;
+            animation: fall 11s linear infinite;
         }
 
         @keyframes fall {
@@ -117,14 +117,32 @@
                 opacity: 0;
             }
         }
+
+        @keyframes scale-up {
+            0% {
+                transform: scale(1);
+                font-size: 18px;
+            }
+
+            100% {
+                transform: scale(1.2);
+                font-size: 48px;
+            }
+        }
+
+        .h1-scale {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            animation: scale-up 2s ease-in-out forwards;
+        }
 </style>
 </head>
 <body>
     <div id="main-container">
-        <div id="leaf-container"></div>
         <section class="section">
             <img src="/image/main_bg.png" alt="Main Background">
-            <h1 style="position: relative; z-index: 2; font-size: 40px;">응답하라<br>2012</h1>
+            <h1 class="h1-scale">응답하라<br>2012</h1>
             <div class="scroll-down" onclick="scrollToNextSection(1)">
                 <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
@@ -221,15 +239,14 @@
         }
 
         function generateLeaves() {
-            const leafContainer = document.getElementById('leaf-container');
-            for (let i = 0; i < 15; i++) {
+            const leafContainer = document.querySelector('.section:first-child');
+            for (let i = 0; i < 17; i++) {  // Adjusted for 10% more leaves
                 const leaf = document.createElement('div');
                 leaf.classList.add('leaf');
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = Math.random() * 5 + 10 + 's';
+                leaf.style.animationDuration = Math.random() * 4 + 7 + 's'; // 4 seconds faster
                 leaf.style.animationDelay = Math.random() * 5 + 's';
-                leafContainer.appendChild
-(leaf);
+                leafContainer.appendChild(leaf);
             }
         }
 
