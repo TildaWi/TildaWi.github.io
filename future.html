@@ -68,8 +68,8 @@
             margin: 0;
             font-size: 16px;
             text-align: center;
-            color: #ffffff;
-            text-shadow: 0px 0px 5px gray;
+            color: black;
+            text-shadow: 0px 0px 8px gray;
         }
 
         .triangle {
@@ -77,7 +77,7 @@
             height: 0;
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-top: 15px solid white;
+            border-top: 15px solid black;
             margin-top: 5px;
             filter: drop-shadow(0px 4px 4px gray);
         }
@@ -91,41 +91,38 @@
             }
         }
 
-  /* 기존 .leaf 스타일 유지 */
-    .leaf {
-        position: absolute;
-        width: 20px;
-        height: 20px;
-        background: linear-gradient(-45deg, #42b02c 0%, #57b045 40%, #86d676 80%);
-        border-radius: 10% 50% 40% 50%;
-        box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
-        z-index: 1;
-        pointer-events: none;
-        animation: fall 11s linear infinite;
-        visibility: hidden; /* 숨김 초기 상태 */
-    }
+        .leaf {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(-45deg, #42b02c 0%, #57b045 40%, #86d676 80%);
+            border-radius: 10% 50% 40% 50%;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1;
+            pointer-events: none;
+            animation: fall 11s linear infinite;
+            visibility: hidden;
+        }
 
-      /* 나뭇잎 애니메이션 */
-      @keyframes fall {
-          0% {
-              top: -50px;
-              opacity: 1;
-          }
-          80% {
-              opacity: 1;
-          }
-          100% {
-              top: 100vh;
-              opacity: 0;
-          }
-      }
+        @keyframes fall {
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
+        }
 
         @keyframes scale-up {
             0% {
                 transform: scale(1);
                 font-size: 18px;
             }
-
             100% {
                 transform: scale(1.2);
                 font-size: 40px;
@@ -138,12 +135,11 @@
             text-align: center;
             animation: scale-up 2s ease-in-out forwards;
             font-color: #ffffff;
-            top: 60px; /* 위치를 60px 아래로 이동 */
+            top: 80px;
         }
 </style>
 </head>
 <body>
-    <div class="header-placeholder"></div>
     <div id="main-container">
         <section class="section">
             <img src="/image/main_bg.png" alt="Main Background">
@@ -231,33 +227,41 @@
             </div>
         </section>
         <section class="section">
-            <img src="/image/page_12.png" alt="Page 12">
+                <img src="/image/page_12.png" alt="Page 12">
         </section>
     </div>
 
     <script>
-            // 3초 후 나뭇잎 보이게 설정
-            setTimeout(() => {
-                const leaves = document.querySelectorAll('.leaf');
-                leaves.forEach(leaf => {
-                    leaf.style.visibility = 'visible';
-                });
-            }, 3000);
-        
-            // 나뭇잎 생성 함수 (유지)
-            function generateLeaves() {
-                const leafContainer = document.querySelector('.section:first-child');
-                for (let i = 0; i < 17; i++) {
-                    const leaf = document.createElement('div');
-                    leaf.classList.add('leaf');
-                    leaf.style.left = Math.random() * 100 + 'vw';
-                    leaf.style.animationDuration = Math.random() * 5 + 7 + 's'; // 속도 설정
-                    leaf.style.animationDelay = Math.random() * 5 + 's'; // 초기 대기 설정
-                    leafContainer.appendChild(leaf);
-                }
+        // Scroll to next section function
+        function scrollToNextSection(index) {
+            const sections = document.querySelectorAll('.section');
+            if (index < sections.length) {
+                sections[index].scrollIntoView({ behavior: 'smooth' });
             }
-        
-            generateLeaves();
-        </script>            
+        }
+
+        // Show leaves after delay and generate them
+        setTimeout(() => {
+            const leaves = document.querySelectorAll('.leaf');
+            leaves.forEach(leaf => {
+                leaf.style.visibility = 'visible';
+            });
+        }, 3000);
+
+        function generateLeaves() {
+            const leafContainer = document.querySelector('.section:first-child');
+            for (let i = 0; i < 17; i++) {
+                const leaf = document.createElement('div');
+                leaf.classList.add('leaf');
+                leaf.style.left = Math.random() * 100 + 'vw';
+                leaf.style.animationDuration = Math.random() * 5 + 7 + 's';
+                leaf.style.animationDelay = Math.random() * 5 + 's';
+                leaf.style.top = '-100px'; // Ensures leaves start off-screen
+                leafContainer.appendChild(leaf);
+            }
+        }
+
+        generateLeaves();
+    </script>
 </body>
 </html>
