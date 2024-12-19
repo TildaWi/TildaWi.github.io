@@ -37,9 +37,12 @@
             justify-content: center;
             align-items: center;
             position: relative;
+            background-color: black;
         }
 
         .section img {
+            position: absolute;
+            z-index: 0;
             max-width: 100%;
             width: 100%;
             height: auto;
@@ -53,6 +56,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 10;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -60,11 +64,12 @@
             animation: bounce 1.5s infinite;
         }
 
-        .scroll-down p {
+        .scroll-down span {
             margin: 0;
             font-size: 16px;
             text-align: center;
-            color: black;
+            color: white;
+            text-shadow: 0px 0px 9px gray;
         }
 
         .triangle {
@@ -72,9 +77,9 @@
             height: 0;
             border-left: 10px solid transparent;
             border-right: 10px solid transparent;
-            border-top: 15px solid black;
+            border-top: 15px solid white;
             margin-top: 5px;
-            box-shadow: 0 0 10px gray;
+            filter: drop-shadow(0px 4px 4px gray);
         }
 
         @keyframes bounce {
@@ -88,53 +93,49 @@
 
         .leaf {
             position: absolute;
-            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(-45deg, #42b02c 0%, #57b045 40%, #86d676 80%);
             border-radius: 10% 50% 40% 50%;
-            z-index: 2;
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+            z-index: 1;
             pointer-events: none;
-            transform-style: preserve-3d;
-            transition: transform 1000ms linear;
+            animation: fall 11s linear infinite;
+            visibility: hidden;
         }
 
         @keyframes fall {
-              0% {
-                  top: 0;
-                  opacity: 1;
-              }
-          
-              80% {
-                  opacity: 1;
-              }
-          
-              100% {
-                  top: 100%;
-                  opacity: 0.2;
-              }
-          }
-
-        .section h1 {
-            position: absolute;
-            width: 100%;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            text-align: center;
-            margin: 0;
-            font-size: 28px;
-            color: white;
+            0% {
+                top: -50px;
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                top: 100vh;
+                opacity: 0;
+            }
         }
 
-        .section p {
-            position: absolute;
-            width: 100%;
-            top: calc(50% + 50px);
-            left: 50%;
-            transform: translateX(-50%);
+        @keyframes scale-up {
+            0% {
+                transform: scale(1);
+                font-size: 18px;
+            }
+            100% {
+                transform: scale(1.2);
+                font-size: 40px;
+            }
+        }
+
+        .h1-scale {
+            position: relative;
+            z-index: 2;
             text-align: center;
-            margin: 0;
-            font-size: 24px;
-            color: white;
+            animation: scale-up 2s ease-in-out forwards;
+            font-color: #ffffff;
+            bottom: 40px;
         }
 </style>
 </head>
@@ -142,96 +143,98 @@
     <div id="main-container">
         <section class="section">
             <img src="/image/main_bg.png" alt="Main Background">
-            <h1>응답하라</h1>
-            <p>2012</p>
+            <h1 class="h1-scale">응답하라<br>2012</h1>
             <div class="scroll-down" onclick="scrollToNextSection(1)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
-            <img src="/image/page_01.png" alt="Page 01">
+            <img src="/image/page_01.gif" alt="Page 01">
             <div class="scroll-down" onclick="scrollToNextSection(2)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
-        <img src="/image/page_02.png" alt="Page 02">
+            <img src="/image/page_02.png" alt="Page 02">
             <div class="scroll-down" onclick="scrollToNextSection(3)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_03.png" alt="Page 03">
             <div class="scroll-down" onclick="scrollToNextSection(4)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_04.png" alt="Page 04">
             <div class="scroll-down" onclick="scrollToNextSection(5)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_05.png" alt="Page 05">
             <div class="scroll-down" onclick="scrollToNextSection(6)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_06.png" alt="Page 06">
             <div class="scroll-down" onclick="scrollToNextSection(7)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_07.gif" alt="Page 07">
             <div class="scroll-down" onclick="scrollToNextSection(8)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
-            <img src="/image/page_08.png" alt="Page 08">
+            <img src="/image/page_08.gif" alt="Page 08">
             <div class="scroll-down" onclick="scrollToNextSection(9)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_09.png" alt="Page 09">
             <div class="scroll-down" onclick="scrollToNextSection(10)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_10.png" alt="Page 10">
             <div class="scroll-down" onclick="scrollToNextSection(11)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_11.png" alt="Page 11">
-                <div class="scroll-down" onclick="scrollToNextSection(12)">
-                <p>여기를 눌러줘!!</p>
+            <div class="scroll-down" onclick="scrollToNextSection(12)">
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
-            <img src="/image/page_12.png" alt="Page 12">
+                <img src="/image/page_12.png" alt="Page 12">
+                <span>오합지졸 ing...</span>
+                <div class="triangle"></div>
         </section>
     </div>
 
     <script>
+        // Scroll to next section function
         function scrollToNextSection(index) {
             const sections = document.querySelectorAll('.section');
             if (index < sections.length) {
@@ -239,16 +242,24 @@
             }
         }
 
-        // Generate leaf elements
+        // Show leaves after delay and generate them
+        setTimeout(() => {
+            const leaves = document.querySelectorAll('.leaf');
+            leaves.forEach(leaf => {
+                leaf.style.visibility = 'visible';
+            });
+        }, 3000);
+
         function generateLeaves() {
-            const mainContainer = document.getElementById('main-container');
-            for (let i = 0; i < 30; i++) {
+            const leafContainer = document.querySelector('.section:first-child');
+            for (let i = 0; i < 17; i++) {
                 const leaf = document.createElement('div');
                 leaf.classList.add('leaf');
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = Math.random() * 3 + 2 + 's';
+                leaf.style.animationDuration = Math.random() * 5 + 7 + 's';
                 leaf.style.animationDelay = Math.random() * 5 + 's';
-                mainContainer.appendChild(leaf);
+                leaf.style.top = '-100px'; // Ensures leaves start off-screen
+                leafContainer.appendChild(leaf);
             }
         }
 
