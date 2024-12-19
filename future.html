@@ -51,7 +51,7 @@
         }
 
         .scroll-down {
-            position: fixed;
+            position: absolute;
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
@@ -99,7 +99,7 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 1;
             pointer-events: none;
-            animation: fall 10s linear infinite;
+            animation: fall 15s linear infinite;
         }
 
         @keyframes fall {
@@ -125,47 +125,91 @@
         <section class="section">
             <img src="/image/main_bg.png" alt="Main Background">
             <h1 style="position: relative; z-index: 2; font-size: 40px;">응답하라<br>2012</h1>
+            <div class="scroll-down" onclick="scrollToNextSection(1)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_01.gif" alt="Page 01">
+            <div class="scroll-down" onclick="scrollToNextSection(2)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_02.png" alt="Page 02">
+            <div class="scroll-down" onclick="scrollToNextSection(3)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_03.png" alt="Page 03">
+            <div class="scroll-down" onclick="scrollToNextSection(4)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_04.png" alt="Page 04">
+            <div class="scroll-down" onclick="scrollToNextSection(5)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_05.png" alt="Page 05">
+            <div class="scroll-down" onclick="scrollToNextSection(6)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_06.png" alt="Page 06">
+            <div class="scroll-down" onclick="scrollToNextSection(7)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_07.gif" alt="Page 07">
+            <div class="scroll-down" onclick="scrollToNextSection(8)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_08.gif" alt="Page 08">
+            <div class="scroll-down" onclick="scrollToNextSection(9)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_09.png" alt="Page 09">
+            <div class="scroll-down" onclick="scrollToNextSection(10)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_10.png" alt="Page 10">
+            <div class="scroll-down" onclick="scrollToNextSection(11)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_11.png" alt="Page 11">
+            <div class="scroll-down" onclick="scrollToNextSection(12)">
+                <span>여기를 눌러줘!!</span>
+                <div class="triangle"></div>
+            </div>
         </section>
         <section class="section">
             <img src="/image/page_12.png" alt="Page 12">
         </section>
-        <div class="scroll-down" onclick="scrollToNextSection(1)">
-            <span>여기를 눌러줘!!</span>
-            <div class="triangle"></div>
-        </div>
     </div>
 
     <script>
@@ -178,13 +222,14 @@
 
         function generateLeaves() {
             const leafContainer = document.getElementById('leaf-container');
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 15; i++) {
                 const leaf = document.createElement('div');
                 leaf.classList.add('leaf');
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
+                leaf.style.animationDuration = Math.random() * 5 + 10 + 's';
                 leaf.style.animationDelay = Math.random() * 5 + 's';
-                leafContainer.appendChild(leaf);
+                leafContainer.appendChild
+(leaf);
             }
         }
 
