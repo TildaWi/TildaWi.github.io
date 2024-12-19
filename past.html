@@ -12,29 +12,27 @@
         padding: 0; 
         font-family: 'Noto Sans KR', sans-serif; 
         box-sizing: border-box; 
-    } 
-    body { 
-        margin: 0; 
-        padding: 0; 
-        display: flex; 
-        align-items: center; 
-        justify-content: center;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        background: linear-gradient(#ffb6c1 30%, #ffffff 70%);
-        z-index: 0;
-    } 
-    ul, li { 
-        list-style: none;
+    }     
+      
+    body {
+        height:100%;
+        margin:0;
+        border:0;
+        padding:0;
+        overflow: hidden;
+        background-color: #ffffff;
     }
-    
+
     .cherry_blossom { 
         overflow: hidden; 
-        position: absolute; 
+        position: relative; 
         width: 100%;
-        height: 100%; 
-        /*background: url('') center center no-repeat;*/
+        height: 100%
+        max-width: 1080px; 
+        max-height: 1960px; 
+        background: url('sakura.png') center center no-repeat;
+        background-size: cover; 
+        perspective: 1000px;
     } 
     .cherry_blossom .petal {
         position: absolute; 
@@ -52,94 +50,156 @@
         80% { opacity: 1; } 
         100% { top: 100%; opacity: 0.2; } 
     }
+    
+    ul, li { 
+        list-style: none;
+    }
+        
+    .wrap {
+        position: relative;
+        top:0;
+        width: 100%;
+        height: 100%
+        max-width: 1080px; 
+        max-height: 1960px; 
+        transition: 0.5s;
+    }
+        
+    .container {
+        width:100%;
+        height:100%;
+    }
+        
+    .container:nth-child(1){background-color: green;}
+    .container:nth-child(2){background-color: orange;}
+    .container:nth-child(3){background-color: yellow;}
+    .container:nth-child(4){background-color: red;}
         
 </style>
 <body>
     <div class="cherry_blossom"></div>
+    <div class="wrap">
+        <div class="container">
+               
+        </div>
+        <div class="container">
+            
+        </div>
+        <div class="container">
+            
+        </div>
+        <div class="container">
+            
+        </div>
+    </div>
 
 
     <script>
-    // 기본 값 설정
-    const defaults = {
-        speed: 5,
-        maxSize: 15,
-        minSize: 10,
-        newOn: 400
-    };
     
-    // 벚꽃 영역 크기를 저장할 변수
-    var $wrap = $('.cherry_blossom');
-    let wrapH = $wrap.height();
-    let wrapW = $wrap.width();
-    
-    // 벚꽃 잎 생성
-    const $petal = $('<span class="petal"></span>');
-    
-    // 랜덤 회전 값을 생성하는 함수
-    const getRandomRotate = () => {
-        const rotateX = 360;
-        const rotateY = Math.random() * 60 - 30;
-        const rotateZ = Math.random() * 120 - 30;
-        const translateX = Math.random() * 10 - 5;
-        const translateY = Math.random() * 10 - 10;
-        const translateZ = Math.random() * 15;
-        return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
-    };
-    
-    // 무작위 흔들림 애니메이션 배열 생성
-    const randomSwayAnims = [...Array(10)].map(getRandomRotate);
-    
-    // 특정 요소에 흔들림 애니메이션 적용
-    const applySwayAnim = (element) => {
-        const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
-        element.css('transform', randomSway);
-        setTimeout(() => {
-            applySwayAnim(element);
-        }, 1000);
-    };
-    
-    // 벚꽃 잎 생성 함수
-    const petalGen = () => {
-        setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
-    
-        const petal = $petal.clone();
-        const size = Math.floor(Math.random() * (defaults.maxSize - defaults.minSize + 1)) + defaults.minSize;
-        const startPosLeft = Math.random() * wrapW;
-        const fallTime = (wrapH * 0.1 + Math.random() * 5) / defaults.speed;
-        const horizontalOffset = Math.random() * 2 - 1;
-    
-        // 애니메이션 끝나면 제거
-        petal.on('animationend', () => {
-            petal.remove();
-        }).css({
-            width: size,
-            height: size,
-            left: startPosLeft,
-            position: 'absolute',
-            animation: `fall ${fallTime}s linear`
-        }).appendTo($wrap);
-    
-        // 위치 업데이트 함수
-        const updatePos = () => {
-            petal.css('left', `+=${horizontalOffset}`);
-            requestAnimationFrame(updatePos);
+        
+        // 기본 값 설정
+        const defaults = {
+            speed: 5,
+            maxSize: 15,
+            minSize: 10,
+            newOn: 400
         };
-    
-        updatePos();
-        applySwayAnim(petal);
-    };
-    
-    // 창 크기가 변경될 때 문서 크기 업데이트
-    $(window).resize(() => {
-        wrapH = $wrap.height();
-        wrapW = $wrap.width();
-    });
-    
-    // 로딩 완료 후 벚꽃 잎 생성 시작
-    $(window).on('load', () => {
-        requestAnimationFrame(petalGen);
-    });
-    
+        
+        // 벚꽃 영역 크기를 저장할 변수
+        var $wrap = $('.cherry_blossom');
+        let wrapH = $wrap.height();
+        let wrapW = $wrap.width();
+        
+        // 벚꽃 잎 생성
+        const $petal = $('<span class="petal"></span>');
+        
+        // 랜덤 회전 값을 생성하는 함수
+        const getRandomRotate = () => {
+            const rotateX = 360;
+            const rotateY = Math.random() * 60 - 30;
+            const rotateZ = Math.random() * 120 - 30;
+            const translateX = Math.random() * 10 - 5;
+            const translateY = Math.random() * 10 - 10;
+            const translateZ = Math.random() * 15;
+            return `rotateX(${rotateX}deg) rotateY(${rotateY}deg) rotateZ(${rotateZ}deg) translateX(${translateX}px) translateY(${translateY}px) translateZ(${translateZ}px)`;
+        };
+        
+        // 무작위 흔들림 애니메이션 배열 생성
+        const randomSwayAnims = [...Array(10)].map(getRandomRotate);
+        
+        // 특정 요소에 흔들림 애니메이션 적용
+        const applySwayAnim = (element) => {
+            const randomSway = randomSwayAnims[Math.floor(Math.random() * randomSwayAnims.length)];
+            element.css('transform', randomSway);
+            setTimeout(() => {
+                applySwayAnim(element);
+            }, 1000);
+        };
+        
+        // 벚꽃 잎 생성 함수
+        const petalGen = () => {
+            setTimeout(requestAnimationFrame, defaults.newOn, petalGen);
+        
+            const petal = $petal.clone();
+            const size = Math.floor(Math.random() * (defaults.maxSize - defaults.minSize + 1)) + defaults.minSize;
+            const startPosLeft = Math.random() * wrapW;
+            const fallTime = (wrapH * 0.1 + Math.random() * 5) / defaults.speed;
+            const horizontalOffset = Math.random() * 2 - 1;
+        
+            // 애니메이션 끝나면 제거
+            petal.on('animationend', () => {
+                petal.remove();
+            }).css({
+                width: size,
+                height: size,
+                left: startPosLeft,
+                position: 'absolute',
+                animation: `fall ${fallTime}s linear`
+            }).appendTo($wrap);
+        
+            // 위치 업데이트 함수
+            const updatePos = () => {
+                petal.css('left', `+=${horizontalOffset}`);
+                requestAnimationFrame(updatePos);
+            };
+        
+            updatePos();
+            applySwayAnim(petal);
+        };
+        
+        // 창 크기가 변경될 때 문서 크기 업데이트
+        $(window).resize(() => {
+            wrapH = $wrap.height();
+            wrapW = $wrap.width();
+        });
+        
+        // 로딩 완료 후 벚꽃 잎 생성 시작
+        $(window).on('load', () => {
+            requestAnimationFrame(petalGen);
+        });
+
+            const wrap = document.getElementsByClassName('wrap')[0]; // 보일 영역
+            const container = document.getElementsByClassName('container');
+            let page = 0; // 영역 포지션 초기값
+            const lastPage = container.length - 1; // 마지막 페이지
+            
+            window.addEventListener('wheel',(e)=>{
+                e.preventDefault();
+                if(e.deltaY > 0){
+                    page++;
+                }else if(e.deltaY < 0){
+                    page--;
+                }
+                if(page < 0){
+                    page=0;
+                }else if(page > lastPage){
+                    page = lastPage;
+                }
+                console.log(e.deltaY)
+                wrap.style.top = page * -100 + 'vh';
+            },{passive:false}); // 디폴트 기능 제거 - 스크롤
+
+        };
     </script>
 </body>
 </html>
