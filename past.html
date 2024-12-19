@@ -55,56 +55,72 @@
         top: 50%;
         left: 50%;
         transform: translate(-50%, -50%);
-        width: 100%
+        width: 100%;
         height: 100%;
         z-index: 2;
     }
-       
+
+    .main {
+        width: 840px;
+        height: 960px;
+        background-image: url("/image/main_bg.png");
+        background-size: contain; /* 이미지가 잘리지 않게 비율 유지 */
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    /* 이미지 크기 조정 */
+    img {
+        max-width: 100%;
+        height: auto; 
+    }
+
 </style>
+</head>
 <body>
     <div class="wrap">
         <div class="cherry_blossom"></div>
         <div class="con-box">
             <div class="container main">
-                <img class="/image/main_bg.png" src="" alt="">
+                <img src="/image/main_bg.png" alt="Main Background">
+            </div>
             <div class="container page1">
-                <img class="/image/page_01.png" src="" alt="">                
+                <img src="/image/page_01.png" alt="Page 01">                
             </div>
             <div class="container page2">
-                <img class="/image/page_02.png" src="" alt="">                               
+                <img src="/image/page_02.png" alt="Page 02">                               
             </div>
             <div class="container page3">
-                <img class="/image/page_03.png" src="" alt="">                 
+                <img src="/image/page_03.png" alt="Page 03">                 
             </div>
             <div class="container page4">
-                <img class="/image/page_04.png" src="" alt="">                  
+                <img src="/image/page_04.png" alt="Page 04">                  
             </div>
             <div class="container page5">
-                <img class="/image/page_05.png" src="" alt="">                  
+                <img src="/image/page_05.png" alt="Page 05">                  
             </div>
             <div class="container page6">
-                 <img class="/image/page_06.png" src="" alt="">                 
+                 <img src="/image/page_06.png" alt="Page 06">                 
             </div>
             <div class="container page7">
-                   <img class="/image/page_07.png" src="" alt="">               
+                   <img src="/image/page_07.png" alt="Page 07">               
             </div>
             <div class="container page8">
-                  <img class="/image/page_08.png" src="" alt="">                
+                  <img src="/image/page_08.png" alt="Page 08">                
             </div>
             <div class="container page9">
-                <img class="/image/page_09.png" src="" alt="">                  
+                <img src="/image/page_09.png" alt="Page 09">                  
             </div>
             <div class="container page10">
-                <img class="/image/page_10.png" src="" alt="">                  
+                <img src="/image/page_10.png" alt="Page 10">                  
             </div>
         </div>
     </div>
 
 <script>
     $(document).ready(function () {  
-        
-
-        };
-    </script>
+        // 추가적인 JavaScript 코드
+    });
+</script>
 </body>
 </html>
