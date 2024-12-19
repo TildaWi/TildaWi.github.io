@@ -60,14 +60,12 @@
         z-index: 2;
     }
 
-    .main {
-        width: 840px;
-        height: 960px;
-        background-image: url("/image/main_bg.png");
-        background-size: contain; /* 이미지가 잘리지 않게 비율 유지 */
-        background-position: center;
-        background-repeat: no-repeat;
-        
+    .container {
+        width: 100%;
+        height: 100%;
+        max-width: 840px;
+        max-height: 960px;
+        padding-bottom: 30px;
         display: flex;
         justify-content: center;
         align-items: center;  /* 중앙 정렬 */
@@ -117,6 +115,12 @@
             </div>
             <div class="container page10">
                 <img src="/image/page_10.png" alt="Page 10">                  
+            </div>
+            <div class="container page11">
+                <img src="/image/page_11.png" alt="Page 11">                  
+            </div>
+            <div class="footer">
+                
             </div>
         </div>
     </div>
