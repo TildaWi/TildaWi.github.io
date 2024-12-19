@@ -78,6 +78,7 @@
             border-right: 10px solid transparent;
             border-top: 15px solid black;
             margin-top: 5px;
+            filter: drop-shadow(0px 4px 4px gray);
         }
 
         @keyframes bounce {
@@ -98,7 +99,7 @@
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
             z-index: 1;
             pointer-events: none;
-            animation: fall linear infinite;
+            animation: fall 10s linear infinite;
         }
 
         @keyframes fall {
@@ -120,10 +121,10 @@
 </head>
 <body>
     <div id="main-container">
+        <div id="leaf-container"></div>
         <section class="section">
             <img src="/image/main_bg.png" alt="Main Background">
-            <h1 style="position: relative; z-index: 2;">응답하라</h1>
-            <p style="position: relative; z-index: 2;">2012</p>
+            <h1 style="position: relative; z-index: 2; font-size: 40px;">응답하라<br>2012</h1>
         </section>
         <section class="section">
             <img src="/image/page_01.gif" alt="Page 01">
@@ -176,14 +177,14 @@
         }
 
         function generateLeaves() {
-            const mainContainer = document.getElementById('main-container');
+            const leafContainer = document.getElementById('leaf-container');
             for (let i = 0; i < 30; i++) {
                 const leaf = document.createElement('div');
                 leaf.classList.add('leaf');
                 leaf.style.left = Math.random() * 100 + 'vw';
-                leaf.style.animationDuration = Math.random() * 3 + 2 + 's';
+                leaf.style.animationDuration = Math.random() * 5 + 5 + 's';
                 leaf.style.animationDelay = Math.random() * 5 + 's';
-                mainContainer.appendChild(leaf);
+                leafContainer.appendChild(leaf);
             }
         }
 
