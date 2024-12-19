@@ -244,14 +244,6 @@
             }
         }
 
-        // Show leaves after delay and generate them
-        setTimeout(() => {
-            const leaves = document.querySelectorAll('.leaf');
-            leaves.forEach(leaf => {
-                leaf.style.visibility = 'visible';
-            });
-        }, 3000);
-
         function generateLeaves() {
             const leafContainer = document.querySelector('.section:first-child');
             for (let i = 0; i < 17; i++) {
