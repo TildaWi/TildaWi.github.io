@@ -4,29 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Back to the 2012!</title>
-    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <style>
         /* 기본 스타일 */
         body {
-            margin: 0;
-            padding: 0;
-            height: 100vh;
             background: linear-gradient(to bottom, #ffb6c1 30%, #ffffff 70%);
-            font-family: 'Press Start 2P', cursive;
-            overflow: hidden;
-            background-size: cover;
-            position: relative;
-            z-index: 0;
         }
-        
+
         .cherry_blossom {
-            position: absolute;
-            width: 100%;
-            height: 100%;
             overflow: hidden;
-            z-index: 5;
-            
+            position: relative;
+            width: 600px;
+            height: 600px;
+            background: url('sakura.png') center center no-repeat;
+            background-size: cover;
+            perspective: 1000px;
         }
         
         .cherry_blossom .petal {
@@ -55,6 +47,8 @@
                 opacity: 0.2;
             }
         }
+
+        
 
  
 
