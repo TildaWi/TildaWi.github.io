@@ -37,6 +37,7 @@
 
 
     <script>
+    $(document).ready(function () {
         // 벚꽃 효과
         const defaults = {
             speed: 5,
@@ -65,6 +66,8 @@
         };
 
         $(window).on('load', () => requestAnimationFrame(petalGen));
+
+        };
 
     </script>
 </body>
