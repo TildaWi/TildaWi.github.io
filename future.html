@@ -53,6 +53,7 @@
             bottom: 20px;
             left: 50%;
             transform: translateX(-50%);
+            z-index: 10;
             cursor: pointer;
             display: flex;
             flex-direction: column;
@@ -65,6 +66,7 @@
             font-size: 16px;
             text-align: center;
             color: black;
+            text-shadow: 0px 0px 4px gray;
         }
 
         .triangle {
@@ -74,7 +76,6 @@
             border-right: 10px solid transparent;
             border-top: 15px solid black;
             margin-top: 5px;
-            box-shadow: 0 0 10px gray;
         }
 
         @keyframes bounce {
@@ -88,22 +89,30 @@
 
         .leaf {
             position: absolute;
-            width: 30px;
-            height: 30px;
-            background-color: green;
-            clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
-            animation: fall linear infinite;
+            background: linear-gradient(-45deg, #ffb6c1 0%, #ffc5d0 40%, #ffdfe6 80%);
+            border-radius: 10% 50% 40% 50%;
             z-index: 2;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            pointer-events: none;
+            transform-style: preserve-3d;
+            transition: transform 1000ms linear;
         }
 
         @keyframes fall {
-            from {
-                transform: translateY(-100px) rotate(0deg);
-            }
-            to {
-                transform: translateY(100vh) rotate(360deg);
-            }
-        }
+              0% {
+                  top: 0;
+                  opacity: 1;
+              }
+          
+              80% {
+                  opacity: 1;
+              }
+          
+              100% {
+                  top: 100%;
+                  opacity: 0.2;
+              }
+          }
 
         .section h1 {
             position: absolute;
@@ -113,19 +122,19 @@
             transform: translate(-50%, -50%);
             text-align: center;
             margin: 0;
-            font-size: 28px;
+            font-size: 32px;
             color: white;
         }
 
         .section p {
             position: absolute;
             width: 100%;
-            top: calc(50% + 50px);
+            top: calc(50% + 25px);
             left: 50%;
             transform: translateX(-50%);
             text-align: center;
             margin: 0;
-            font-size: 24px;
+            font-size: 28px;
             color: white;
         }
 </style>
@@ -137,84 +146,84 @@
             <h1>응답하라</h1>
             <p>2012</p>
             <div class="scroll-down" onclick="scrollToNextSection(1)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_01.png" alt="Page 01">
             <div class="scroll-down" onclick="scrollToNextSection(2)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
         <img src="/image/page_02.png" alt="Page 02">
             <div class="scroll-down" onclick="scrollToNextSection(3)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_03.png" alt="Page 03">
             <div class="scroll-down" onclick="scrollToNextSection(4)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_04.png" alt="Page 04">
             <div class="scroll-down" onclick="scrollToNextSection(5)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_05.png" alt="Page 05">
             <div class="scroll-down" onclick="scrollToNextSection(6)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_06.png" alt="Page 06">
             <div class="scroll-down" onclick="scrollToNextSection(7)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_07.gif" alt="Page 07">
             <div class="scroll-down" onclick="scrollToNextSection(8)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_08.png" alt="Page 08">
             <div class="scroll-down" onclick="scrollToNextSection(9)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_09.png" alt="Page 09">
             <div class="scroll-down" onclick="scrollToNextSection(10)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_10.png" alt="Page 10">
             <div class="scroll-down" onclick="scrollToNextSection(11)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
         <section class="section">
             <img src="/image/page_11.png" alt="Page 11">
                 <div class="scroll-down" onclick="scrollToNextSection(12)">
-                <p>여기를 눌러줘!!</p>
+                <span>여기를 눌러줘!!</span>
                 <div class="triangle"></div>
             </div>
         </section>
