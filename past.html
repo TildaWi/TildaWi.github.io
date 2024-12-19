@@ -21,20 +21,24 @@
         box-sizing: border-box; 
     }      
     body {
-        background-color: #000000;
         position: relative; 
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background-color: #000000;
     }
 
     .cherry_blossom { 
-        overflow: hidden; 
-        position: relative; 
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,50%);
         width: 100%;
         height: 100%
         max-width: 1080px; 
         max-height: 1960px; 
-        background: url('sakura.png') center center no-repeat;
-        background-size: cover; 
-        perspective: 1000px;
+        z-index: 10;
+        background-color: red;
     } 
     .cherry_blossom .petal {
         position: absolute; 
@@ -58,12 +62,15 @@
     }
         
     .wrap {
-        position: relative;
-        top:0;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,50%);
         width: 100%;
         height: 100%
         max-width: 1080px; 
         max-height: 1960px; 
+        z-index: 1;
         transition: 0.5s;
     }
         
